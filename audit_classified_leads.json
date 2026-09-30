@@ -1,0 +1,1188 @@
+{
+  "summary": {
+    "TECH": 455,
+    "HR": 10,
+    "IRRELEVANT": 131
+  },
+  "irrelevant": [
+    {
+      "row": 2,
+      "name": "Jesse Chidubem (M.NSE, M.IAENG)",
+      "position": "AutoCAD & Electrical Design Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/jesse-chidubem-m-nse-m-iaeng-1849a9278"
+    },
+    {
+      "row": 6,
+      "name": "uduak udo",
+      "position": "Site Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'site engineer'",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/uduak-udo-137ba968"
+    },
+    {
+      "row": 8,
+      "name": "OSUMAH JOHN TERRY",
+      "position": "Lead Project Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/osumah-john-terry-4b4487b4"
+    },
+    {
+      "row": 12,
+      "name": "Salvation Nnamdi",
+      "position": "Prompt Engineer and cofounder",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/salvation-nnamdi-0279a6260"
+    },
+    {
+      "row": 13,
+      "name": "Okezie Uruchi",
+      "position": "Prototype Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/uruchi-okezie"
+    },
+    {
+      "row": 16,
+      "name": "Lucky Joshua",
+      "position": "Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/lucky-joshua-380154246"
+    },
+    {
+      "row": 17,
+      "name": "Paul Olojede",
+      "position": "AI Workflow Automation Specialist",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/paul-olojede-5a79233a5"
+    },
+    {
+      "row": 21,
+      "name": "Chinedu Eze",
+      "position": "Refactory technician",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'refactory'",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/chinedu-eze-28a727244"
+    },
+    {
+      "row": 24,
+      "name": "Mostafa Omar",
+      "position": "trainer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/mostafa-omar-111441174"
+    },
+    {
+      "row": 33,
+      "name": "Yaqoob Sikandar",
+      "position": "Website Manager",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/yaqoob-sikandar-aa9921385"
+    },
+    {
+      "row": 37,
+      "name": "Daniel PEPPLE",
+      "position": "Engineer In Charge",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/daniel-pepple-a06a31103"
+    },
+    {
+      "row": 43,
+      "name": "Sylvester Ameh",
+      "position": "Technical Support Specialist",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/sylvester-ameh-b1ba45184"
+    },
+    {
+      "row": 44,
+      "name": "DAMILOLA OLUGBENGA (HE/HIM)",
+      "position": "Site Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'site engineer'",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/damilola-olugbenga-he-him-a64142192"
+    },
+    {
+      "row": 47,
+      "name": "Mijan Igoni",
+      "position": "Engineering Intern",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/mijanrich"
+    },
+    {
+      "row": 50,
+      "name": "SAMUEL ILORI",
+      "position": "Production Engineering Intern",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/samuel-ilori-4524703a5"
+    },
+    {
+      "row": 51,
+      "name": "Ayodeji Komolafe, GMNSE",
+      "position": "Project Engineering Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'trainee'",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/ayodeji-komolafe-gmnse"
+    },
+    {
+      "row": 53,
+      "name": "Olanrewaju Oreoluwa",
+      "position": "Freelance Web Designer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/olanrewaju-oreoluwa-48655b2aa"
+    },
+    {
+      "row": 54,
+      "name": "Emmanuel Usang",
+      "position": "Mechanical Engineering Intern",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/emmanuel-usang-189777274"
+    },
+    {
+      "row": 62,
+      "name": "Peter Oyedemi",
+      "position": "Technical Operations",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/peter-oyedemi-a55b70195"
+    },
+    {
+      "row": 73,
+      "name": "Sheriffdeen Abolade",
+      "position": "IT/SOC Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/sheriffdeen-abolade-93136613b"
+    },
+    {
+      "row": 76,
+      "name": "ogechi miracle",
+      "position": "Engineering Content writer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/ogechi-miracle-9b4a22386"
+    },
+    {
+      "row": 78,
+      "name": "Olatunbosun Ademuyiwa",
+      "position": "Technical Sales Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/olatunbosun-ademuyiwa-b218651b7"
+    },
+    {
+      "row": 79,
+      "name": "Oluwajoba Akintunde",
+      "position": "Prompt Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/oluwajoba-akintunde"
+    },
+    {
+      "row": 81,
+      "name": "Olawumi Glory",
+      "position": "Internship Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'internship trainee'",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/olawumi-glory-b9150a38a"
+    },
+    {
+      "row": 86,
+      "name": "Esther Jokodola",
+      "position": "Data Science",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/esther-jokodola"
+    },
+    {
+      "row": 90,
+      "name": "Ndeebom Victor MeenaaluBari,MTECH, GMNSE, GMSPE, GMNES.",
+      "position": "Petroleum Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'petroleum'",
+      "status": "Failed: Send button disabled",
+      "url": "https://www.linkedin.com/in/ndeebom-victor-meenaalubari-mtech-gmnse-gmspe-gmnes-11a609284"
+    },
+    {
+      "row": 92,
+      "name": "Yusirat Alimi",
+      "position": "Global Health Technology Fellow",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/damilolaalimi"
+    },
+    {
+      "row": 93,
+      "name": "Francis Woods",
+      "position": "Modelling Technician",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'technician'",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/francis-edema-woods"
+    },
+    {
+      "row": 94,
+      "name": "Akanbi Omotoyosi",
+      "position": "Technical Project Manager",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/akanbi-omotoyosi-90732221a"
+    },
+    {
+      "row": 95,
+      "name": "Abdulkareem Abdulmateen",
+      "position": "Founding Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/abdulkareem-abdulmateen-551534235"
+    },
+    {
+      "row": 103,
+      "name": "Eman Sehar",
+      "position": "Technology Awareness Volunteer",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'awareness volunteer'",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/eman-sehar-7681b1375"
+    },
+    {
+      "row": 104,
+      "name": "Abasimfon James",
+      "position": "Trainee Associate",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'trainee'",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/abasimfon-james-3a4aab1ab"
+    },
+    {
+      "row": 105,
+      "name": "Emmanuel Kolawole",
+      "position": "Internship Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'internship trainee'",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/emmanuel-kolawole-a31154358"
+    },
+    {
+      "row": 107,
+      "name": "Modupe Adedokun Oluwadare",
+      "position": "Lifecycle Services Sales Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Failed: Send button disabled",
+      "url": "https://www.linkedin.com/in/modupeaadedokun"
+    },
+    {
+      "row": 109,
+      "name": "O. Paul ANDREW",
+      "position": "Executive Chairman",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'chairman'",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/o-paul-andrew-435b186"
+    },
+    {
+      "row": 121,
+      "name": "Hasnain Hakim",
+      "position": "Radio Frequency Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Failed: No Message Button",
+      "url": "https://www.linkedin.com/in/hasnainhakim"
+    },
+    {
+      "row": 122,
+      "name": "Olushola Jinadu",
+      "position": "Tier 2 Service Desk Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/olushola-jinadu"
+    },
+    {
+      "row": 134,
+      "name": "Flora Nwakpa",
+      "position": "Technology & Innovation Officer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/flora-nwakpa"
+    },
+    {
+      "row": 140,
+      "name": "John Adekusile",
+      "position": "Senior Network and Security Solutions Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/adekusile"
+    },
+    {
+      "row": 141,
+      "name": "Olasupo Azeez",
+      "position": "Supply Chain Analyst",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'supply chain'",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/olasupo-azeez"
+    },
+    {
+      "row": 142,
+      "name": "Miracle Nwabuisi",
+      "position": "Engineering Executive",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/miracleonline"
+    },
+    {
+      "row": 144,
+      "name": "Kalpit Jain",
+      "position": "Production Support Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/kalpit-jain-255b19211"
+    },
+    {
+      "row": 146,
+      "name": "Kevin Alejandro De Arco Cabezas",
+      "position": "Technical support engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/kevinalejandrodearcocabezas"
+    },
+    {
+      "row": 153,
+      "name": "Oluwafemi Olasupo",
+      "position": "Artificial Intelligence Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/oluwafemi-olasupo"
+    },
+    {
+      "row": 159,
+      "name": "Oluwafemi Michael Otusanya",
+      "position": "Head of Engineering",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/codewithfemi"
+    },
+    {
+      "row": 160,
+      "name": "Ibukun Dairo, MBA",
+      "position": "Founder & Principal Engineer (Consultancy)",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/ibukundairo"
+    },
+    {
+      "row": 167,
+      "name": "Habeeblah Aberejo",
+      "position": "Artificial Intelligence Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/habeeblahaberejo"
+    },
+    {
+      "row": 169,
+      "name": "Wilson Osuji",
+      "position": "Senior Information Technology Executive",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/wilson-osuji"
+    },
+    {
+      "row": 170,
+      "name": "QUDUS AILERU",
+      "position": "Techno-Functional (T24) Consultant",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Failed: No Chat Box",
+      "url": "https://www.linkedin.com/in/qudus-aileru-b159a7209"
+    },
+    {
+      "row": 172,
+      "name": "Emmanuel Adesanya",
+      "position": "Digital Media Aide to the Special Adviser on Sustainable Development Goals",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'media aide'",
+      "status": "Contacted",
+      "url": "https://www.linkedin.com/in/emmanuel-adesanya-veritas"
+    },
+    {
+      "row": 176,
+      "name": "Afere Emmanuel",
+      "position": "Deupty Supply-Chain Manager",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/afere-emmanuel"
+    },
+    {
+      "row": 180,
+      "name": "Habeeb Lanlehin",
+      "position": "Project/Subsea Engineering Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'trainee'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/habeeb-lanlehin-5b8b3a379"
+    },
+    {
+      "row": 184,
+      "name": "Adebayo Muhammed",
+      "position": "Industrial Training",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'industrial training'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/adebayo-muhammed-808269225"
+    },
+    {
+      "row": 185,
+      "name": "Lawal Teslim Opeyemi",
+      "position": "Human Data Lead",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/lawal-teslim-opeyemi-9819a622a"
+    },
+    {
+      "row": 186,
+      "name": "Nafisat Abdulsalam",
+      "position": "Associate Technical Consultant",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/nafisat-abdulsalam-b93a9a272"
+    },
+    {
+      "row": 194,
+      "name": "Rukevwe Otubu",
+      "position": "Technical Operations Intern",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/rukevweotubu"
+    },
+    {
+      "row": 197,
+      "name": "Towolawi Olusegun",
+      "position": "Lead Information Technology Specialist",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/towolawi-olusegun-bb8570161"
+    },
+    {
+      "row": 199,
+      "name": "David Oluremi",
+      "position": "Website Designer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/david-oluremi-636280245"
+    },
+    {
+      "row": 200,
+      "name": "Joshua Oyewale FMVA, AAT",
+      "position": "Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'trainee'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/joshua-oyewale-fmva-aat-10041623b"
+    },
+    {
+      "row": 203,
+      "name": "Hamid Jimoh. (GMNSE)",
+      "position": "AI fellow",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/hamid-jimoh"
+    },
+    {
+      "row": 206,
+      "name": "Bolaji Abideen",
+      "position": "Network Development Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/bolaji-abideen-441a68138"
+    },
+    {
+      "row": 207,
+      "name": "Pramit Dasgupta",
+      "position": "AI Automation Architect",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/pramit-dasgupta-50820b358"
+    },
+    {
+      "row": 208,
+      "name": "Khalid Gafar",
+      "position": "DevSecOps Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/khalid-gafar-1207a3360"
+    },
+    {
+      "row": 211,
+      "name": "VENKATA RAJESH GANTA",
+      "position": "Design Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/rajesh-trimseng"
+    },
+    {
+      "row": 217,
+      "name": "Sulaimon Abass",
+      "position": "Mobile Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/sulaimon-abass-016a28168"
+    },
+    {
+      "row": 225,
+      "name": "Oladimeji Oluwadare",
+      "position": "Reservoir Engineering Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'reservoir'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/oladimeji-oluwadare-280540212"
+    },
+    {
+      "row": 234,
+      "name": "Adeyemi Favour Adetayo",
+      "position": "Mobile Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/adeyemi-favour-adetayo"
+    },
+    {
+      "row": 235,
+      "name": "Kehinde Yusuf",
+      "position": "Director of Internal Affairs",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'internal affairs'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/thekehindeyusuf"
+    },
+    {
+      "row": 241,
+      "name": "Stephen Akugbe",
+      "position": "Founding Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/akugbe-stephen"
+    },
+    {
+      "row": 242,
+      "name": "Chibuike Ugochukwu",
+      "position": "Mechanical Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/chibuike-ugochukwu-75220a209"
+    },
+    {
+      "row": 244,
+      "name": "Diego Silva Soares",
+      "position": "Founder & Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/diego-silva-soares"
+    },
+    {
+      "row": 248,
+      "name": "Oyaniyi Oluwatomisin",
+      "position": "Artificial Intelligence Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/oyaniyioluwatomisin"
+    },
+    {
+      "row": 250,
+      "name": "Christabel Okoye, GMNSE",
+      "position": "Project Engineering Intern",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/christabel-okoye-gmnse"
+    },
+    {
+      "row": 260,
+      "name": "Precious Faseyosan",
+      "position": "Graduate Petroleum Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'petroleum'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/precious-faseyosan"
+    },
+    {
+      "row": 262,
+      "name": "Paul Fadayo",
+      "position": "Chief Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/fadayopaul"
+    },
+    {
+      "row": 263,
+      "name": "Abdulmalik Adebayo",
+      "position": "Computer Aided Design Designer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/abdulmalik-adebayo-54a55323a"
+    },
+    {
+      "row": 269,
+      "name": "Damilola Ige",
+      "position": "AI Model Evaluator & Prompt Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/idmcalculus"
+    },
+    {
+      "row": 270,
+      "name": "Faustina Obidire",
+      "position": "Student Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'trainee'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/faustina-obidire"
+    },
+    {
+      "row": 273,
+      "name": "Abdul-Quayyum Gbadamosi PhD, FHEA, UNPA, Prof. FAIMFIN",
+      "position": "Assistant Professor: Informatics in Construction and Sustainable Infrastructure",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'construction'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/abdul-quayyum-gbadamosi-phd-fhea-unpa-prof-faimfin-117b38124"
+    },
+    {
+      "row": 278,
+      "name": "Saoban Raheem",
+      "position": "Graduate Management Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'trainee'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/saoban-raheem-430247190"
+    },
+    {
+      "row": 288,
+      "name": "Emmanuel Ajoku",
+      "position": "Head of Engineering",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/emmanuelajoku"
+    },
+    {
+      "row": 295,
+      "name": "Prince Ikpabi",
+      "position": "Petroleum Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'petroleum'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/prince-ikpabi-ds"
+    },
+    {
+      "row": 298,
+      "name": "Denis Ojua",
+      "position": "Computer Science Ai Data Trainer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/denisojua"
+    },
+    {
+      "row": 300,
+      "name": "Oluwatomisin Adeboye",
+      "position": "Technical Operations Specialist",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/oluwatomisin-adeboye96"
+    },
+    {
+      "row": 311,
+      "name": "Everistus Olumese",
+      "position": "Homesteader & Off-Grid Systems Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/eolumese"
+    },
+    {
+      "row": 317,
+      "name": "Femi Lawal S.",
+      "position": "Senior AI/ML Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/femicodes"
+    },
+    {
+      "row": 322,
+      "name": "Ademola Ogunmokun",
+      "position": "Senior Mobile Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/ademola-ogunmokun10"
+    },
+    {
+      "row": 327,
+      "name": "Samuel Omoniyi",
+      "position": "Deepwater Field Operations Trainee",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'trainee'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/samuel-omoniyi-"
+    },
+    {
+      "row": 329,
+      "name": "Tosin Adedoyin",
+      "position": "Platform Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/tosin-adedoyin"
+    },
+    {
+      "row": 330,
+      "name": "Daniel Idowu",
+      "position": "Technical Team Lead",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/daniel-idowu"
+    },
+    {
+      "row": 341,
+      "name": "Omope Oyinnijesu",
+      "position": "Application Support Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/omope-oyinnijesu-2a6a79224"
+    },
+    {
+      "row": 344,
+      "name": "Moses Shaib",
+      "position": "Assistant Service Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/shaibmoseso"
+    },
+    {
+      "row": 349,
+      "name": "Love Melody",
+      "position": "Founder/Chairman",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'chairman'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/love-melody-085100246"
+    },
+    {
+      "row": 351,
+      "name": "Ibrahim Hassan",
+      "position": "Information Technology Support Officer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/ibrahim-hassan-453a03296"
+    },
+    {
+      "row": 352,
+      "name": "Temiloluwa Olabisi",
+      "position": "Chair",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/temiloluwaolabisi"
+    },
+    {
+      "row": 354,
+      "name": "Toluwanimi Akerele",
+      "position": "Information and Technology Intern",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/toluwanimi-akerele-75a198312"
+    },
+    {
+      "row": 369,
+      "name": "Michael Olaniyi Sadibo",
+      "position": "Public Affairs & Governance",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/michael-olaniyi-sadibo"
+    },
+    {
+      "row": 370,
+      "name": "Justin Chinaza",
+      "position": "Computer Hardware Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/justin-chinaza-084525343"
+    },
+    {
+      "row": 371,
+      "name": "Chukwuweike Azeh",
+      "position": "Graduate Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/chukwuweike-azeh-71ba22238"
+    },
+    {
+      "row": 372,
+      "name": "Anuoluwapo Famakinwa",
+      "position": "Lead Mobile Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/famakinwa-anuoluwapo"
+    },
+    {
+      "row": 374,
+      "name": "Philemon Oyedele",
+      "position": "Production Engineering Intern",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/philemon-oyedele"
+    },
+    {
+      "row": 376,
+      "name": "Nyore Achoja",
+      "position": "Technical Support Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/nyore-achoja-03127211a"
+    },
+    {
+      "row": 382,
+      "name": "Jesutoni Aderibigbe",
+      "position": "Mobile Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/jesutoni-aderibigbe"
+    },
+    {
+      "row": 387,
+      "name": "Elijah Gbogbo",
+      "position": "Media and Technical Team Member",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/elijah-gbogbo-586471219"
+    },
+    {
+      "row": 395,
+      "name": "Babatunde Koiki",
+      "position": "Senior Data and Platform Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/babatunde-koiki-2002"
+    },
+    {
+      "row": 397,
+      "name": "Jefferson Chukwu",
+      "position": "IT Support Technician",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'technician'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/jeffersonchukwu"
+    },
+    {
+      "row": 400,
+      "name": "Chinedu Umeh Roger",
+      "position": "Digital Platform & Data Coordinator",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/chineduumehroger"
+    },
+    {
+      "row": 401,
+      "name": "Jamiu Okanlawon",
+      "position": "Senior DevRel Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/developerjamiu"
+    },
+    {
+      "row": 404,
+      "name": "Abdulmalik Kamil",
+      "position": "Web Designer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/abdulmalik-kamil-37b771360"
+    },
+    {
+      "row": 412,
+      "name": "Daniel Odii",
+      "position": "Mobile Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/daniel-odii-2397b51bb"
+    },
+    {
+      "row": 421,
+      "name": "Jessica Ogwu",
+      "position": "Data and Digitalization Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/jessicaogwu"
+    },
+    {
+      "row": 422,
+      "name": "Moyo Marvel Adedayo, PSM",
+      "position": "Expert AI Trainer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/moyomarveladedayo"
+    },
+    {
+      "row": 427,
+      "name": "Abdulwasii Rufai, CMRP",
+      "position": "Maintenance Planner",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/abdulwasii-rufai-cmrp-4600401a8"
+    },
+    {
+      "row": 430,
+      "name": "Chineta Adinnu",
+      "position": "Information Technology Lead",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/chineta-adinnu"
+    },
+    {
+      "row": 438,
+      "name": "Godstime George",
+      "position": "Web3 Ambassador  (Advocate)",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/godstime-george"
+    },
+    {
+      "row": 441,
+      "name": "David Animasaun",
+      "position": "AI/Cloud consultant",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/david-animsaun"
+    },
+    {
+      "row": 447,
+      "name": "Salem Daniel",
+      "position": "Senior Consultant - MLOps Engineering",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/salem-daniel"
+    },
+    {
+      "row": 450,
+      "name": "Oluwatosin Oyekanmi",
+      "position": "DevSecOps Engineer | AI Security & Automation Consultant",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/oyekanmi-oluwatosin"
+    },
+    {
+      "row": 462,
+      "name": "Oluwasoji AGBOOLA",
+      "position": "Power System Engineer - Senior Operations Specialist",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/oluwasoji-agboola-5390b718a"
+    },
+    {
+      "row": 465,
+      "name": "Maxwell Eruanga Moigele",
+      "position": "Web Designer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/maxwell-eruanga-moigele-851995329"
+    },
+    {
+      "row": 466,
+      "name": "Jeremiah Okoria",
+      "position": "Information Technology Support Specialist",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/jeremiahokoria"
+    },
+    {
+      "row": 483,
+      "name": "Gideon Oyeniran",
+      "position": "Mailchimp Expert",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/gideon-oyeniran"
+    },
+    {
+      "row": 486,
+      "name": "Hossam Hagag",
+      "position": "Senior AI/ML Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/hossamhagag"
+    },
+    {
+      "row": 492,
+      "name": "Ifedolapo Ojo",
+      "position": "Graduate Civil Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Non-tech keyword matched: 'civil'",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/ifedolapo-ojo"
+    },
+    {
+      "row": 494,
+      "name": "Adikwu, Samuel Ochefije",
+      "position": "IT Support Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/adikwu-samuel-ochefije"
+    },
+    {
+      "row": 505,
+      "name": "David Omotayo",
+      "position": "Technical Writer",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/david-omotayo-09604a189"
+    },
+    {
+      "row": 525,
+      "name": "Olusola Ojewunmi",
+      "position": "Engineering Team Lead",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/olusola-ojewunmi"
+    },
+    {
+      "row": 539,
+      "name": "Wakeel Kehinde",
+      "position": "Founding Engineer",
+      "category": "IRRELEVANT",
+      "reason": "Generic/Non-tech Engineering title",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/in/tijjken"
+    },
+    {
+      "row": 581,
+      "name": "Feed detail update",
+      "position": "Aneta Kmiecik - Senior UX Design Portfolio Examples",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/posts/anetakmiecik_senior-ux-design-portfolio-examples-activity-7272255354455941121-pOgz"
+    },
+    {
+      "row": 582,
+      "name": "Feed detail update",
+      "position": "\u200fWe're Hiring a Global Lead - Multilateral Processes\u200f",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://jo.linkedin.com/posts/taskin_were-hiring-a-global-lead-multilateral-activity-7051269589900410880-Psty"
+    },
+    {
+      "row": 585,
+      "name": "Feed detail update",
+      "position": "Senior Engineer Hiring: Ditch the Coding Test",
+      "category": "IRRELEVANT",
+      "reason": "Unrecognized non-tech role",
+      "status": "Pending",
+      "url": "https://www.linkedin.com/posts/nickmgonzalez_ive-been-interviewing-engineers-for-over-activity-7418122928048967681-1kJG"
+    }
+  ]
+}
