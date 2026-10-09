@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoreCV — Team Outreach Control Center</title>
+  <title>CoreCV — Founding Cohort Outreach Engine</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,7 @@
     }
     ::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.15);
-      border-radius: 3px;
+      border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(255, 255, 255, 0.25);
@@ -54,29 +54,35 @@
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-white/10">
       <div>
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
             <svg class="w-5 h-5 text-black font-bold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <h1 class="text-2xl font-bold tracking-tight text-white">CoreCV <span class="text-emerald-400 font-medium text-lg">Outreach Engine</span></h1>
-          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">v2.6 HR Priority</span>
+          <h1 class="text-2xl font-bold tracking-tight text-white">CoreCV <span class="text-emerald-400 font-medium text-lg">Founding Cohort Engine</span></h1>
+          <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-wider">v3.0 Cohort Strategy</span>
         </div>
-        <p class="text-sm text-gray-400 mt-1">Universal Sheet Normalizer, HR Targeting & Automated Persona Outreach for Teams</p>
+        <p class="text-sm text-gray-400 mt-1">Multi-Channel Lead Mining, ICP Auditing, Dynamic 70/20/10 Interleaving & Rule #9 Personalization</p>
       </div>
 
       <div class="flex flex-wrap items-center gap-3">
-        <button id="downloadHrBtn" onclick="downloadHrLedger()" class="px-4 py-2 rounded-xl text-sm font-medium bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 transition-all flex items-center gap-2 shadow-lg shadow-purple-500/10">
-          <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        <button id="mineBtn" onclick="triggerMineLeads()" class="px-4 py-2 rounded-lg text-sm font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/10">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          Export HRs Only (.xlsx)
+          Mine 50 Tech Leads
         </button>
-        <button id="downloadBtn" onclick="downloadLedger()" class="px-4 py-2 rounded-xl text-sm font-medium bg-white/5 hover:bg-white/10 text-gray-200 border border-white/10 transition-all flex items-center gap-2">
+        <button id="auditBtn" onclick="triggerAuditIcp()" class="px-4 py-2 rounded-lg text-sm font-medium bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 transition-all flex items-center gap-2 shadow-lg shadow-indigo-500/10">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Audit Strategy ICP
+        </button>
+        <button id="downloadBtn" onclick="downloadLedger()" class="px-4 py-2 rounded-lg text-sm font-medium bg-white/5 hover:bg-white/10 text-gray-200 border border-white/10 transition-all flex items-center gap-2">
           <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
-          Download Active Excel
+          Export Active Excel
         </button>
       </div>
     </div>
@@ -88,31 +94,31 @@
       <div class="lg:col-span-5 space-y-6">
         
         <!-- Drag & Drop Zone & Quick Presets -->
-        <div class="glass-panel p-6 rounded-2xl shadow-xl space-y-4">
+        <div class="glass-panel p-6 rounded-xl shadow-xl space-y-4">
           <div class="flex items-center justify-between">
             <h2 class="text-base font-semibold text-white flex items-center gap-2">
-              <span>1. Ingest Dataset</span>
+              <span>1. Dataset Management</span>
               <span class="text-xs text-gray-400 font-normal">(.xlsx, .csv)</span>
             </h2>
             <div class="flex gap-2">
-              <button onclick="loadPreset('hr')" class="px-2.5 py-1 text-xs font-medium rounded-lg bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/30 transition-all" title="Load clean HR & Talent Acquisition dataset">
-                ⚡ Load HR List
+              <button onclick="loadPreset('cohort_audited')" class="px-2.5 py-1 text-xs font-medium rounded-md bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-all" title="Load audited cohort pool">
+                ✨ Audited Pool
               </button>
-              <button onclick="loadPreset('master')" class="px-2.5 py-1 text-xs font-medium rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all" title="Load full 500+ Master List">
-                📁 Master List
+              <button onclick="loadPreset('hr')" class="px-2.5 py-1 text-xs font-medium rounded-md bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/30 transition-all" title="Load clean HR & Talent Acquisition dataset">
+                ⚡ HR List
               </button>
             </div>
           </div>
           
           <div id="dropZone" class="border-2 border-dashed border-white/15 rounded-xl p-6 text-center hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all cursor-pointer relative group">
             <input type="file" id="fileInput" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept=".csv, .xlsx, .xls">
-            <div class="w-10 h-10 rounded-full bg-white/5 group-hover:bg-emerald-500/10 flex items-center justify-center mx-auto mb-2 text-emerald-400 transition-colors">
+            <div class="w-10 h-10 rounded-lg bg-white/5 group-hover:bg-emerald-500/10 flex items-center justify-center mx-auto mb-2 text-emerald-400 transition-colors">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
               </svg>
             </div>
             <p class="text-sm font-medium text-gray-200">Drag & drop your spreadsheet</p>
-            <p class="text-xs text-gray-500 mt-0.5">Apollo, LinkedIn Exports, Scrapers — Auto-detected</p>
+            <p class="text-xs text-gray-500 mt-0.5">Apollo, GitHub Minings, LinkedIn Exports — Auto-detected</p>
           </div>
 
           <!-- Detection Report Card -->
@@ -120,59 +126,81 @@
             <div class="flex items-center justify-between text-gray-300 font-semibold border-b border-white/10 pb-2">
               <span class="flex items-center gap-1.5 text-emerald-400">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Auto-Normalizer Matched
+                Dataset Loaded
               </span>
               <span id="reportFileName" class="text-gray-400 truncate max-w-[180px]"></span>
             </div>
             <div class="grid grid-cols-2 gap-2 pt-1 text-gray-400">
-              <div>URL Column: <span id="repUrl" class="text-white font-mono font-medium"></span></div>
-              <div>Position Column: <span id="repPos" class="text-white font-mono font-medium"></span></div>
               <div>Total Leads: <span id="repTotal" class="text-emerald-400 font-bold"></span></div>
-              <div>HRs vs Candidates: <span id="repHrRatio" class="text-purple-300 font-medium"></span></div>
+              <div>Candidates (70%): <span id="repCand" class="text-emerald-300 font-mono font-medium"></span></div>
+              <div>Recruiters (20%): <span id="repHr" class="text-purple-300 font-mono font-medium"></span></div>
+              <div>Founders (10%): <span id="repFnd" class="text-amber-300 font-mono font-medium"></span></div>
             </div>
           </div>
         </div>
 
-        <!-- Campaign Controls & Persona Mode Selector -->
-        <div class="glass-panel p-6 rounded-2xl shadow-xl space-y-5">
-          <h2 class="text-base font-semibold text-white">2. Campaign Parameters & Persona Mode</h2>
+        <!-- Campaign Controls & Dynamic Ratio Selector -->
+        <div class="glass-panel p-6 rounded-xl shadow-xl space-y-5">
+          <h2 class="text-base font-semibold text-white">2. Campaign Parameters & Dynamic Allocator</h2>
           
-          <!-- Target Persona Mode Selector -->
+          <!-- Target Mode Selector -->
           <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-2">🎯 Target Audience Mode</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-2">🎯 Dispatch Mode</label>
             <div class="grid grid-cols-3 gap-2 p-1.5 bg-black/50 border border-white/10 rounded-xl">
-              <button type="button" onclick="setTargetMode('hr_only')" id="modeBtn_hr" class="py-2 px-2 text-xs font-semibold rounded-lg transition-all text-center bg-purple-600/30 text-purple-300 border border-purple-500/40 shadow-sm">
-                🎯 HR Only
+              <button type="button" onclick="setTargetMode('dynamic_cohort')" id="modeBtn_dynamic" class="py-2 px-2 text-xs font-semibold rounded-lg transition-all text-center bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 shadow-sm">
+                ⚡ 70/20/10 Ratio
               </button>
               <button type="button" onclick="setTargetMode('candidates_only')" id="modeBtn_candidates" class="py-2 px-2 text-xs font-medium rounded-lg text-gray-400 hover:text-white transition-all text-center">
                 💻 Candidates
               </button>
-              <button type="button" onclick="setTargetMode('all')" id="modeBtn_all" class="py-2 px-2 text-xs font-medium rounded-lg text-gray-400 hover:text-white transition-all text-center">
-                🌐 All Leads
+              <button type="button" onclick="setTargetMode('hr_only')" id="modeBtn_hr" class="py-2 px-2 text-xs font-medium rounded-lg text-gray-400 hover:text-white transition-all text-center">
+                🎯 Hiring Leads
               </button>
             </div>
-            <p id="modeDescription" class="text-[11px] text-purple-300/80 mt-1.5 flex items-center gap-1">
-              <span>⚡ Prioritizes and contacts HR/Talent Acquisition leads from the bottom or entire list.</span>
+            <p id="modeDescription" class="text-[11px] text-emerald-300/80 mt-1.5 flex items-center gap-1">
+              <span>⚡ Interleaves 70% Candidates / 20% Recruiters / 10% Founders per batch.</span>
             </p>
+          </div>
+
+          <!-- Dynamic Percentage Controls -->
+          <div id="ratioControls" class="p-3 bg-black/40 border border-white/10 rounded-xl space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-gray-300">
+              <span>Dynamic Ratio Split</span>
+              <span class="font-mono text-emerald-400 font-semibold" id="ratioSummary">70% / 20% / 10%</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-xs">
+              <div>
+                <label class="text-[11px] text-gray-400 block mb-1">Cand %</label>
+                <input type="number" id="candPct" value="70" min="0" max="100" onchange="updateRatioSummary()" class="w-full bg-black/60 border border-white/15 rounded-md px-2 py-1 text-white font-mono focus:border-emerald-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="text-[11px] text-gray-400 block mb-1">Recruiter %</label>
+                <input type="number" id="recPct" value="20" min="0" max="100" onchange="updateRatioSummary()" class="w-full bg-black/60 border border-white/15 rounded-md px-2 py-1 text-white font-mono focus:border-purple-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="text-[11px] text-gray-400 block mb-1">Founder %</label>
+                <input type="number" id="fndPct" value="10" min="0" max="100" onchange="updateRatioSummary()" class="w-full bg-black/60 border border-white/15 rounded-md px-2 py-1 text-white font-mono focus:border-amber-500 focus:outline-none">
+              </div>
+            </div>
           </div>
 
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-medium text-gray-400 mb-1.5">Daily Limit</label>
-              <input type="number" id="dailyLimit" value="40" class="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+              <label class="block text-xs font-medium text-gray-400 mb-1.5">Daily Safe Limit</label>
+              <input type="number" id="dailyLimit" value="25" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
             </div>
             <div>
               <label class="block text-xs font-medium text-gray-400 mb-1.5">Min Delay (seconds)</label>
-              <input type="number" id="minDelay" value="45" class="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+              <input type="number" id="minDelay" value="45" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
             </div>
           </div>
 
           <div class="pt-2 flex gap-3">
-            <button id="startBtn" onclick="startCampaign()" class="flex-1 py-3 px-4 rounded-xl font-semibold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2">
+            <button id="startBtn" onclick="startCampaign()" class="flex-1 py-3 px-4 rounded-lg font-semibold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
-              Launch Outreach
+              Launch Cohort Outreach
             </button>
-            <button id="stopBtn" onclick="stopCampaign()" class="py-3 px-4 rounded-xl font-semibold text-sm bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-all flex items-center justify-center gap-2">
+            <button id="stopBtn" onclick="stopCampaign()" class="py-3 px-4 rounded-lg font-semibold text-sm bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-all flex items-center justify-center gap-2">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd"/></svg>
               Pause
             </button>
@@ -187,35 +215,35 @@
         <!-- Live Stat Badges -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div class="glass-card p-4 rounded-xl">
-            <span class="text-xs text-gray-400">Total Leads</span>
+            <span class="text-xs text-gray-400">Total Pool</span>
             <p id="statTotal" class="text-2xl font-bold text-white mt-1">0</p>
           </div>
+          <div class="glass-card p-4 rounded-xl border-emerald-500/20">
+            <span class="text-xs text-emerald-400">Candidates (70%)</span>
+            <p id="statCandidates" class="text-2xl font-bold text-emerald-300 mt-1">0</p>
+          </div>
           <div class="glass-card p-4 rounded-xl border-purple-500/20">
-            <span class="text-xs text-purple-400">HR / Talent</span>
+            <span class="text-xs text-purple-400">Recruiters (20%)</span>
             <p id="statHr" class="text-2xl font-bold text-purple-300 mt-1">0</p>
           </div>
-          <div class="glass-card p-4 rounded-xl border-emerald-500/20">
-            <span class="text-xs text-emerald-400">Contacted</span>
-            <p id="statContacted" class="text-2xl font-bold text-emerald-400 mt-1">0</p>
-          </div>
-          <div class="glass-card p-4 rounded-xl">
-            <span class="text-xs text-amber-400">Pending</span>
-            <p id="statPending" class="text-2xl font-bold text-amber-400 mt-1">0</p>
+          <div class="glass-card p-4 rounded-xl border-amber-500/20">
+            <span class="text-xs text-amber-400">Founders (10%)</span>
+            <p id="statFounders" class="text-2xl font-bold text-amber-300 mt-1">0</p>
           </div>
         </div>
 
         <!-- Live Terminal Streamer -->
-        <div class="glass-panel p-6 rounded-2xl shadow-xl flex flex-col h-[400px]">
+        <div class="glass-panel p-6 rounded-xl shadow-xl flex flex-col h-[400px]">
           <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
             <div class="flex items-center gap-2">
-              <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+              <div class="w-2.5 h-2.5 rounded-sm bg-emerald-500 animate-pulse"></div>
               <h2 class="text-sm font-semibold text-white">Live Execution Terminal</h2>
             </div>
-            <span id="activeStatusBadge" class="text-xs font-mono px-2 py-0.5 rounded bg-white/5 text-gray-400">IDLE</span>
+            <span id="activeStatusBadge" class="text-xs font-mono px-2 py-0.5 rounded-md bg-white/5 text-gray-400">IDLE</span>
           </div>
 
-          <div id="terminal" class="flex-1 bg-black/60 rounded-xl p-4 font-mono text-xs overflow-y-auto space-y-2 text-gray-300 border border-white/5">
-            <div class="text-gray-500">🟢 CoreCV Control Center ready. Target mode configured for HR / Recruiter priority.</div>
+          <div id="terminal" class="flex-1 bg-black/60 rounded-lg p-4 font-mono text-xs overflow-y-auto space-y-2 text-gray-300 border border-white/5">
+            <div class="text-gray-500">🟢 CoreCV Founding Cohort Engine online. Dynamic 70/20/10 ratio ready.</div>
           </div>
         </div>
 
@@ -224,191 +252,190 @@
     </div>
 
     <!-- Bottom Section: Interactive Live Leads Table Explorer -->
-    <div class="glass-panel p-6 rounded-2xl shadow-xl mt-8 space-y-4">
+    <div class="glass-panel p-6 rounded-xl shadow-xl mt-8 space-y-4">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            <span>📋 Active Leads Explorer</span>
-            <span id="tableLeadCountBadge" class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-white/10 text-gray-300">0 leads</span>
+            <span>📋 Founding Cohort Leads Explorer</span>
+            <span id="tableLeadCountBadge" class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-white/10 text-gray-300">0 leads</span>
           </h2>
-          <p class="text-xs text-gray-400">Inspect, verify personas, and monitor live outreach status across your team's dataset</p>
+          <p class="text-xs text-gray-400">Inspect verified evidence, Rule #9 proof clauses, and persona allocations</p>
         </div>
 
         <!-- Table Filters & Search -->
         <div class="flex flex-wrap items-center gap-2">
           <!-- Filter Tabs -->
-          <div class="flex bg-black/40 border border-white/10 p-1 rounded-xl text-xs">
-            <button onclick="setTableFilter('all')" id="tab_all" class="px-3 py-1 rounded-lg font-semibold bg-white/10 text-white transition-all">All</button>
-            <button onclick="setTableFilter('hr')" id="tab_hr" class="px-3 py-1 rounded-lg text-gray-400 hover:text-purple-300 transition-all flex items-center gap-1">
-              <span>🎯 HRs</span>
-              <span id="tabBadgeHr" class="text-[10px] px-1.5 py-0.2 rounded-full bg-purple-500/20 text-purple-300">0</span>
-            </button>
-            <button onclick="setTableFilter('candidate')" id="tab_candidate" class="px-3 py-1 rounded-lg text-gray-400 hover:text-emerald-300 transition-all flex items-center gap-1">
+          <div class="flex bg-black/40 border border-white/10 p-1 rounded-lg text-xs">
+            <button onclick="setTableFilter('all')" id="tab_all" class="px-3 py-1 rounded-md font-semibold bg-white/10 text-white transition-all">All</button>
+            <button onclick="setTableFilter('candidates')" id="tab_candidates" class="px-3 py-1 rounded-md text-gray-400 hover:text-emerald-300 transition-all flex items-center gap-1">
               <span>💻 Candidates</span>
-              <span id="tabBadgeCand" class="text-[10px] px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300">0</span>
+              <span id="tabBadgeCand" class="text-[10px] px-1.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300">0</span>
             </button>
-            <button onclick="setTableFilter('pending')" id="tab_pending" class="px-3 py-1 rounded-lg text-gray-400 hover:text-amber-300 transition-all">Pending</button>
-            <button onclick="setTableFilter('contacted')" id="tab_contacted" class="px-3 py-1 rounded-lg text-gray-400 hover:text-emerald-300 transition-all">Contacted</button>
+            <button onclick="setTableFilter('hr')" id="tab_hr" class="px-3 py-1 rounded-md text-gray-400 hover:text-purple-300 transition-all flex items-center gap-1">
+              <span>🎯 Recruiters</span>
+              <span id="tabBadgeHr" class="text-[10px] px-1.5 py-0.5 rounded-md bg-purple-500/20 text-purple-300">0</span>
+            </button>
+            <button onclick="setTableFilter('founders')" id="tab_founders" class="px-3 py-1 rounded-md text-gray-400 hover:text-amber-300 transition-all flex items-center gap-1">
+              <span>🏢 Founders</span>
+              <span id="tabBadgeFnd" class="text-[10px] px-1.5 py-0.5 rounded-md bg-amber-500/20 text-amber-300">0</span>
+            </button>
+            <button onclick="setTableFilter('pending')" id="tab_pending" class="px-3 py-1 rounded-md text-gray-400 hover:text-gray-200 transition-all">Pending</button>
+            <button onclick="setTableFilter('contacted')" id="tab_contacted" class="px-3 py-1 rounded-md text-gray-400 hover:text-emerald-400 transition-all">Contacted</button>
           </div>
 
           <!-- Search Input -->
-          <div class="relative min-w-[200px]">
-            <input type="text" id="tableSearch" oninput="handleTableSearch()" placeholder="Search name, title, company..." class="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors">
+          <div class="relative">
+            <input type="text" id="tableSearch" oninput="handleTableSearch()" placeholder="Search lead, role, company..." class="bg-black/40 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 w-48 sm:w-64 transition-all">
+            <svg class="w-3.5 h-3.5 text-gray-500 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
         </div>
       </div>
 
       <!-- Table Container -->
-      <div class="overflow-x-auto rounded-xl border border-white/10 bg-black/40">
-        <table class="w-full text-left text-xs">
-          <thead class="bg-white/5 text-gray-400 uppercase font-mono text-[11px] border-b border-white/10">
-            <tr>
-              <th class="py-3 px-4">Lead Name</th>
-              <th class="py-3 px-4">Position / Headline</th>
+      <div class="overflow-x-auto rounded-lg border border-white/10">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-white/[0.03] border-b border-white/10 text-gray-400 uppercase tracking-wider font-semibold">
+              <th class="py-3 px-4">Lead / Builder</th>
+              <th class="py-3 px-4">Role / Position</th>
               <th class="py-3 px-4">Company / Location</th>
-              <th class="py-3 px-4">Persona</th>
-              <th class="py-3 px-4">Profile</th>
-              <th class="py-3 px-4">Outreach Status</th>
+              <th class="py-3 px-4">Persona Bucket</th>
+              <th class="py-3 px-4">Rule #9 Concrete Proof</th>
+              <th class="py-3 px-4">Links</th>
+              <th class="py-3 px-4">Status</th>
             </tr>
           </thead>
-          <tbody id="leadsTableBody" class="divide-y divide-white/5 text-gray-300">
+          <tbody id="leadsTableBody" class="divide-y divide-white/5">
             <tr>
-              <td colspan="6" class="py-8 text-center text-gray-500 font-mono">Loading active dataset...</td>
+              <td colspan="7" class="py-8 text-center text-gray-500 font-mono">
+                Loading cohort ledger...
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- Table Pagination Footer -->
-      <div class="flex items-center justify-between text-xs text-gray-400 pt-2">
+      <!-- Pagination -->
+      <div class="flex items-center justify-between pt-2 text-xs text-gray-400">
         <span id="pageInfo">Showing 0-0 of 0 leads</span>
         <div class="flex gap-2">
-          <button id="prevPageBtn" onclick="changePage(-1)" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all">Previous</button>
-          <button id="nextPageBtn" onclick="changePage(1)" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all">Next</button>
+          <button id="prevPageBtn" onclick="changePage(-1)" class="px-3 py-1.5 rounded-md bg-white/5 hover:bg-white/10 text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors">Previous</button>
+          <button id="nextPageBtn" onclick="changePage(1)" class="px-3 py-1.5 rounded-md bg-white/5 hover:bg-white/10 text-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors">Next</button>
         </div>
       </div>
-
     </div>
 
   </div>
 
   <script>
-    const dropZone = document.getElementById('dropZone');
-    const fileInput = document.getElementById('fileInput');
-    const terminal = document.getElementById('terminal');
-
-    let currentTargetMode = 'hr_only';
+    let currentTargetMode = 'dynamic_cohort';
     let currentTableFilter = 'all';
     let currentSearchTerm = '';
     let currentPageOffset = 0;
-    const PAGE_LIMIT = 25;
+    const PAGE_LIMIT = 50;
 
-    // Mode Selector Handler
+    const terminal = document.getElementById('terminal');
+
+    function updateRatioSummary() {
+      const c = document.getElementById('candPct').value || 70;
+      const r = document.getElementById('recPct').value || 20;
+      const f = document.getElementById('fndPct').value || 10;
+      document.getElementById('ratioSummary').innerText = `${c}% / ${r}% / ${f}%`;
+    }
+
     function setTargetMode(mode) {
       currentTargetMode = mode;
-      ['hr', 'candidates', 'all'].forEach(m => {
-        const btn = document.getElementById(`modeBtn_${m}`);
-        if (m === (mode === 'hr_only' ? 'hr' : (mode === 'candidates_only' ? 'candidates' : 'all'))) {
-          btn.className = "py-2 px-2 text-xs font-semibold rounded-lg transition-all text-center bg-purple-600/30 text-purple-300 border border-purple-500/40 shadow-sm";
-        } else {
-          btn.className = "py-2 px-2 text-xs font-medium rounded-lg text-gray-400 hover:text-white transition-all text-center";
-        }
+      const btnDynamic = document.getElementById('modeBtn_dynamic');
+      const btnCandidates = document.getElementById('modeBtn_candidates');
+      const btnHr = document.getElementById('modeBtn_hr');
+      const desc = document.getElementById('modeDescription');
+      const ratioControls = document.getElementById('ratioControls');
+
+      [btnDynamic, btnCandidates, btnHr].forEach(b => {
+        b.className = "py-2 px-2 text-xs font-medium rounded-lg text-gray-400 hover:text-white transition-all text-center";
       });
 
-      const desc = document.getElementById('modeDescription');
-      if (mode === 'hr_only') {
-        desc.innerHTML = `<span>⚡ Prioritizes and contacts HR/Talent Acquisition leads from the bottom or entire list.</span>`;
-        desc.className = "text-[11px] text-purple-300/80 mt-1.5 flex items-center gap-1";
-      } else if (mode === 'candidates_only') {
-        desc.innerHTML = `<span>💻 Targets tech candidates and developers for founding user early access.</span>`;
+      if (mode === 'dynamic_cohort') {
+        btnDynamic.className = "py-2 px-2 text-xs font-semibold rounded-lg transition-all text-center bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 shadow-sm";
+        desc.innerText = "⚡ Interleaves Candidates, Recruiters & Founders dynamically per your percentage ratio.";
         desc.className = "text-[11px] text-emerald-300/80 mt-1.5 flex items-center gap-1";
+        ratioControls.style.display = 'block';
+      } else if (mode === 'candidates_only') {
+        btnCandidates.className = "py-2 px-2 text-xs font-semibold rounded-lg transition-all text-center bg-teal-600/30 text-teal-300 border border-teal-500/40 shadow-sm";
+        desc.innerText = "💻 Targets Technical Candidates (Software, AI, Design, PM) exclusively.";
+        desc.className = "text-[11px] text-teal-300/80 mt-1.5 flex items-center gap-1";
+        ratioControls.style.display = 'none';
       } else {
-        desc.innerHTML = `<span>🌐 Processes all leads in sequential top-to-bottom order.</span>`;
-        desc.className = "text-[11px] text-gray-400 mt-1.5 flex items-center gap-1";
+        btnHr.className = "py-2 px-2 text-xs font-semibold rounded-lg transition-all text-center bg-purple-600/30 text-purple-300 border border-purple-500/40 shadow-sm";
+        desc.innerText = "🎯 Targets Hiring Leads (Founders, CTOs, and Technical Recruiters) exclusively.";
+        desc.className = "text-[11px] text-purple-300/80 mt-1.5 flex items-center gap-1";
+        ratioControls.style.display = 'none';
       }
     }
 
-    // Drag & Drop Listeners
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropZone.classList.add('drag-over');
-      }, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('drag-over');
-      }, false);
-    });
-
-    dropZone.addEventListener('drop', (e) => {
-      const files = e.dataTransfer.files;
-      if (files.length) uploadFile(files[0]);
-    });
-
-    fileInput.addEventListener('change', (e) => {
-      if (fileInput.files.length) uploadFile(fileInput.files[0]);
-    });
-
-    async function uploadFile(file) {
-      appendLog(`Uploading '${file.name}'...`, 'info');
-      const formData = new FormData();
-      formData.append('file', file);
-
+    async function triggerMineLeads() {
+      const mineBtn = document.getElementById('mineBtn');
+      mineBtn.disabled = true;
+      mineBtn.innerText = "Mining in background...";
       try {
-        const res = await fetch('/api/upload', { method: 'POST', body: formData });
+        const res = await fetch('/api/mine_leads?count=50', { method: 'POST' });
         const data = await res.json();
-        if (data.status === 'success') {
-          updateReportCard(data.filename, data.report);
-          appendLog(`✅ File parsed successfully! Matched ${data.report.total_valid_leads} leads (${data.report.hr_leads} HRs, ${data.report.tech_leads} Candidates).`, 'success');
-          loadLeadsTable();
-          updateStatus();
-        } else {
-          appendLog(`❌ Parse Error: ${data.message}`, 'error');
-        }
+        appendLog(`🚀 ${data.message}`, 'info');
       } catch (err) {
-        appendLog(`❌ Network Error uploading file: ${err}`, 'error');
+        appendLog(`❌ Mining trigger error: ${err}`, 'error');
+      } finally {
+        setTimeout(() => {
+          mineBtn.disabled = false;
+          mineBtn.innerHTML = `<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg> Mine 50 Tech Leads`;
+        }, 3000);
       }
     }
 
-    async function loadPreset(presetName) {
-      appendLog(`Loading preset '${presetName}'...`, 'info');
+    async function triggerAuditIcp() {
+      const auditBtn = document.getElementById('auditBtn');
+      auditBtn.disabled = true;
+      auditBtn.innerText = "Auditing ICP in background...";
       try {
-        const res = await fetch(`/api/load_preset?preset=${presetName}`, { method: 'POST' });
+        const res = await fetch('/api/audit_icp', { method: 'POST' });
+        const data = await res.json();
+        appendLog(`🔍 ${data.message}`, 'info');
+      } catch (err) {
+        appendLog(`❌ ICP audit trigger error: ${err}`, 'error');
+      } finally {
+        setTimeout(() => {
+          auditBtn.disabled = false;
+          auditBtn.innerHTML = `<svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Audit Strategy ICP`;
+        }, 3000);
+      }
+    }
+
+    async function loadPreset(preset) {
+      try {
+        appendLog(`Loading preset '${preset}'...`, 'info');
+        const res = await fetch(`/api/load_preset?preset=${preset}`, { method: 'POST' });
         const data = await res.json();
         if (data.status === 'success') {
           appendLog(`✅ ${data.message}`, 'success');
-          if (data.report) {
-            updateReportCard(presetName === 'hr' ? 'HR / Recruiter List' : 'Master Automation List', data.report);
-          }
           loadLeadsTable();
           updateStatus();
         } else {
-          appendLog(`❌ Error loading preset: ${data.message}`, 'error');
+          appendLog(`❌ ${data.message}`, 'error');
         }
       } catch (e) {
-        appendLog(`❌ Preset error: ${e}`, 'error');
+        appendLog(`❌ Error loading preset: ${e}`, 'error');
       }
-    }
-
-    function updateReportCard(filename, report) {
-      document.getElementById('reportCard').classList.remove('hidden');
-      document.getElementById('reportFileName').innerText = filename;
-      document.getElementById('repUrl').innerText = report.detected_url_col || 'LinkedIn URL';
-      document.getElementById('repPos').innerText = report.detected_pos_col || 'Position';
-      document.getElementById('repTotal').innerText = report.total_valid_leads;
-      document.getElementById('repHrRatio').innerText = `${report.hr_leads || 0} HRs • ${report.tech_leads || 0} Cands`;
     }
 
     async function startCampaign() {
       const startBtn = document.getElementById('startBtn');
-      const dailyLimit = parseInt(document.getElementById('dailyLimit').value) || 40;
+      const dailyLimit = parseInt(document.getElementById('dailyLimit').value) || 25;
       const minDelay = parseInt(document.getElementById('minDelay').value) || 45;
+      const candPct = parseInt(document.getElementById('candPct').value) || 70;
+      const recPct = parseInt(document.getElementById('recPct').value) || 20;
+      const fndPct = parseInt(document.getElementById('fndPct').value) || 10;
 
       startBtn.disabled = true;
-      startBtn.innerHTML = `<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg> Launching Engine...`;
+      startBtn.innerHTML = `Launching Engine...`;
 
       try {
         const res = await fetch('/api/start', {
@@ -418,7 +445,10 @@
             daily_limit: dailyLimit, 
             min_delay: minDelay, 
             max_delay: minDelay * 2,
-            target_mode: currentTargetMode
+            target_mode: currentTargetMode,
+            candidate_pct: candPct,
+            recruiter_pct: recPct,
+            founder_pct: fndPct
           })
         });
         const data = await res.json();
@@ -427,7 +457,7 @@
       } catch (e) {
         appendLog(`❌ Failed to start campaign: ${e}`, 'error');
         startBtn.disabled = false;
-        startBtn.innerHTML = `Launch Outreach`;
+        startBtn.innerHTML = `Launch Cohort Outreach`;
       }
     }
 
@@ -444,10 +474,6 @@
 
     function downloadLedger() {
       window.location.href = '/api/download';
-    }
-
-    function downloadHrLedger() {
-      window.location.href = '/api/download_hr';
     }
 
     function appendLog(msg, level = 'info') {
@@ -478,42 +504,35 @@
         const res = await fetch('/api/status');
         const data = await res.json();
         document.getElementById('statTotal').innerText = data.total_leads || 0;
-        document.getElementById('statContacted').innerText = data.contacted_count || 0;
-
-        if (data.mapping_report && data.mapping_report.total_valid_leads) {
-          updateReportCard("Active Dataset", data.mapping_report);
-          document.getElementById('statHr').innerText = data.mapping_report.hr_leads || 0;
-        }
 
         const badge = document.getElementById('activeStatusBadge');
         const startBtn = document.getElementById('startBtn');
 
         if (data.is_running) {
-          badge.className = "text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
-          badge.innerText = `RUNNING • ${data.current_lead || 'Active'}`;
+          badge.className = "text-xs font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+          badge.innerText = `RUNNING | ${data.current_lead || 'Active'}`;
           startBtn.disabled = true;
-          startBtn.className = "flex-1 py-3 px-4 rounded-xl font-semibold text-sm bg-emerald-600/40 text-emerald-200 cursor-not-allowed border border-emerald-500/30 transition-all flex items-center justify-center gap-2";
-          startBtn.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping mr-1"></span> Campaign in Progress...`;
+          startBtn.className = "flex-1 py-3 px-4 rounded-lg font-semibold text-sm bg-emerald-600/40 text-emerald-200 cursor-not-allowed border border-emerald-500/30 transition-all flex items-center justify-center gap-2";
+          startBtn.innerHTML = `Campaign in Progress...`;
         } else {
-          badge.className = "text-xs font-mono px-2 py-0.5 rounded bg-white/5 text-gray-400";
+          badge.className = "text-xs font-mono px-2 py-0.5 rounded-md bg-white/5 text-gray-400";
           badge.innerText = "IDLE";
           startBtn.disabled = false;
-          startBtn.className = "flex-1 py-3 px-4 rounded-xl font-semibold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2";
-          startBtn.innerHTML = `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg> Launch Outreach`;
+          startBtn.className = "flex-1 py-3 px-4 rounded-lg font-semibold text-sm bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2";
+          startBtn.innerHTML = `Launch Cohort Outreach`;
         }
       } catch (e) {}
     }
 
-    // Interactive Leads Table Logic
     function setTableFilter(filter) {
       currentTableFilter = filter;
-      ['all', 'hr', 'candidate', 'pending', 'contacted'].forEach(f => {
+      ['all', 'candidates', 'hr', 'founders', 'pending', 'contacted'].forEach(f => {
         const btn = document.getElementById(`tab_${f}`);
         if (btn) {
           if (f === filter) {
-            btn.className = "px-3 py-1 rounded-lg font-semibold bg-white/10 text-white transition-all";
+            btn.className = "px-3 py-1 rounded-md font-semibold bg-white/10 text-white transition-all";
           } else {
-            btn.className = "px-3 py-1 rounded-lg text-gray-400 hover:text-white transition-all";
+            btn.className = "px-3 py-1 rounded-md text-gray-400 hover:text-white transition-all";
           }
         }
       });
@@ -541,7 +560,7 @@
       const tbody = document.getElementById('leadsTableBody');
       try {
         const query = new URLSearchParams({
-          mode: currentTableFilter,
+          mode: currentTableFilter === 'candidates' ? 'candidate' : currentTableFilter,
           search: currentSearchTerm,
           limit: PAGE_LIMIT,
           offset: currentPageOffset
@@ -553,9 +572,8 @@
         // Update stats
         if (data.stats) {
           document.getElementById('statTotal').innerText = data.stats.total || 0;
+          document.getElementById('statCandidates').innerText = data.stats.candidate || 0;
           document.getElementById('statHr').innerText = data.stats.hr || 0;
-          document.getElementById('statContacted').innerText = data.stats.contacted || 0;
-          document.getElementById('statPending').innerText = data.stats.pending || 0;
           document.getElementById('tabBadgeHr').innerText = data.stats.hr || 0;
           document.getElementById('tabBadgeCand').innerText = data.stats.candidate || 0;
         }
@@ -563,7 +581,7 @@
         document.getElementById('tableLeadCountBadge').innerText = `${data.total} matching leads`;
 
         if (!data.leads || data.leads.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500 font-mono">No leads found matching current filter.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-gray-500 font-mono">No leads found matching current filter.</td></tr>`;
           document.getElementById('pageInfo').innerText = "Showing 0-0 of 0 leads";
           document.getElementById('prevPageBtn').disabled = true;
           document.getElementById('nextPageBtn').disabled = true;
@@ -582,45 +600,57 @@
           const pos = lead['Position'] || 'Professional';
           const comp = lead['Company'] || '';
           const loc = lead['Location'] || 'Nigeria';
-          const persona = lead['Display_Persona'] || 'Candidate';
-          const url = lead['LinkedIn URL'] || '#';
+          const bucket = lead['Persona_Bucket'] || (lead['Display_Persona'] === 'HR' ? 'RECRUITER_20' : 'CANDIDATE_70');
+          const linkedinUrl = lead['LinkedIn URL'] || '';
+          const githubUrl = lead['GitHub URL'] || '';
           const status = lead['Status'] || 'Pending';
           const contactedAt = lead['Contacted_At'] || '';
+          const proof = lead['Rule9_Concrete_Proof'] || '';
+          const icpScore = lead['ICP_Score'] || '';
 
-          let personaBadge = persona === 'HR' 
-            ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30">HR / Talent</span>`
-            : `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">Candidate</span>`;
+          let bucketBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">Candidate 70%</span>`;
+          if (bucket === 'RECRUITER_20' || bucket === 'HIRING_TIER_1') {
+            bucketBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30">Recruiter 20%</span>`;
+          } else if (bucket === 'FOUNDER_10' || bucket === 'HIRING_TIER_2') {
+            bucketBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30">Founder 10%</span>`;
+          }
 
-          let statusBadge = `<span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-white/5 text-gray-400">Pending</span>`;
+          let statusBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-white/5 text-gray-400">Pending</span>`;
           if (status === 'Contacted') {
-            statusBadge = `<span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">✓ Contacted</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">✓ Contacted</span>`;
           } else if (status.startsWith('Skipped:')) {
-            statusBadge = `<span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">Skipped</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">Skipped</span>`;
           } else if (status.startsWith('Failed:')) {
-            statusBadge = `<span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-red-500/20 text-red-400 border border-red-500/30">Failed</span>`;
+            statusBadge = `<span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-red-500/20 text-red-400 border border-red-500/30">Failed</span>`;
           }
 
           tr.innerHTML = `
             <td class="py-3 px-4 font-medium text-white flex items-center gap-2.5">
-              <div class="w-7 h-7 rounded-lg ${persona === 'HR' ? 'bg-purple-600/30 text-purple-300 border border-purple-500/30' : 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/30'} flex items-center justify-center font-bold text-[10px]">
+              <div class="w-7 h-7 rounded-md ${bucket.includes('RECRUITER') ? 'bg-purple-600/30 text-purple-300 border border-purple-500/30' : (bucket.includes('FOUNDER') ? 'bg-amber-600/30 text-amber-300 border border-amber-500/30' : 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/30')} flex items-center justify-center font-bold text-[10px]">
                 ${initials}
               </div>
-              <span class="truncate max-w-[150px]">${fullName}</span>
+              <div>
+                <span class="truncate max-w-[140px] block">${fullName}</span>
+                ${icpScore ? `<span class="text-[10px] font-mono text-emerald-400">Score: ${icpScore}/10</span>` : ''}
+              </div>
             </td>
-            <td class="py-3 px-4 text-gray-300 truncate max-w-[220px]" title="${pos}">
+            <td class="py-3 px-4 text-gray-300 truncate max-w-[180px]" title="${pos}">
               ${pos}
             </td>
-            <td class="py-3 px-4 text-gray-400 truncate max-w-[160px]">
-              ${comp ? `<span class="text-gray-300">${comp}</span> • ` : ''}${loc}
+            <td class="py-3 px-4 text-gray-400 truncate max-w-[140px]">
+              ${comp ? `<span class="text-gray-300">${comp}</span> | ` : ''}${loc}
             </td>
             <td class="py-3 px-4">
-              ${personaBadge}
+              ${bucketBadge}
+            </td>
+            <td class="py-3 px-4 text-gray-300 max-w-[220px] truncate" title="${proof}">
+              ${proof ? `<span class="text-xs italic text-gray-300">"${proof}"</span>` : '<span class="text-gray-500">-</span>'}
             </td>
             <td class="py-3 px-4">
-              <a href="${url}" target="_blank" class="text-gray-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-1 font-mono text-[11px]">
-                <span>View</span>
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-              </a>
+              <div class="flex items-center gap-2">
+                ${linkedinUrl ? `<a href="${linkedinUrl}" target="_blank" class="text-gray-400 hover:text-emerald-400 transition-colors font-mono text-[11px]">LI</a>` : ''}
+                ${githubUrl ? `<a href="${githubUrl}" target="_blank" class="text-gray-400 hover:text-teal-400 transition-colors font-mono text-[11px]">GH</a>` : ''}
+              </div>
             </td>
             <td class="py-3 px-4">
               ${statusBadge}
@@ -638,19 +668,13 @@
         document.getElementById('nextPageBtn').disabled = (endNum >= data.total);
 
       } catch (err) {
-        tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-red-400 font-mono">Error loading table data: ${err}</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-red-400 font-mono">Error loading leads table: ${err}</td></tr>`;
       }
     }
 
-    // Initial setup
+    // Initialize
     updateStatus();
     loadLeadsTable();
-    setInterval(() => {
-      updateStatus();
-      if (document.getElementById('activeStatusBadge').innerText.includes('RUNNING')) {
-        loadLeadsTable();
-      }
-    }, 4000);
   </script>
 </body>
 </html>

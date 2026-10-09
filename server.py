@@ -22,10 +22,17 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 # Import our modular engines
 from importer import normalize_leads_file
+from cohort_engine import (
+    get_cohort_message,
+    interleave_cohort_batch,
+    build_candidate_copy,
+    build_founder_copy,
+    build_recruiter_copy
+)
+from lead_miner import run_lead_mining
+from icp_cleaner import audit_leads_dataset, AUDITED_LEADS_PATH
 from outreach import (
     batch_enrich_leads,
-    get_candidate_message,
-    get_hr_message,
     DEBUG_PORT,
     CHROME_USER_DATA,
 )
@@ -78,24 +85,32 @@ class BotState:
 
 state = BotState()
 
-# Auto-load active ledger if it already exists from a previous session
-if os.path.exists(CURRENT_LEDGER_PATH):
+# Auto-load audited ledger or active ledger if it exists from a previous session
+target_load_path = AUDITED_LEADS_PATH if os.path.exists(AUDITED_LEADS_PATH) else CURRENT_LEDGER_PATH
+if os.path.exists(target_load_path):
     try:
-        state.active_df = pd.read_excel(CURRENT_LEDGER_PATH)
+        state.active_df = pd.read_excel(target_load_path)
         state.total_leads = len(state.active_df)
         hr_keywords = ['hr', 'talent', 'recruit', 'people', 'hiring', 'human resource']
         hr_count = int(state.active_df['Position'].astype(str).str.lower().apply(lambda x: any(k in x for k in hr_keywords)).sum())
+        cands_count = int((state.active_df.get('Persona_Bucket', '') == 'CANDIDATE_70').sum()) if 'Persona_Bucket' in state.active_df.columns else (state.total_leads - hr_count)
+        recs_count = int((state.active_df.get('Persona_Bucket', '') == 'RECRUITER_20').sum()) if 'Persona_Bucket' in state.active_df.columns else hr_count
+        fnds_count = int((state.active_df.get('Persona_Bucket', '') == 'FOUNDER_10').sum()) if 'Persona_Bucket' in state.active_df.columns else 0
         state.mapping_report = {
             "detected_url_col": "LinkedIn URL",
             "detected_name_col": "First Name",
             "detected_pos_col": "Position",
             "total_valid_leads": len(state.active_df),
             "hr_leads": hr_count,
-            "tech_leads": len(state.active_df) - hr_count
+            "tech_leads": len(state.active_df) - hr_count,
+            "candidates": cands_count,
+            "recruiters": recs_count,
+            "founders": fnds_count
         }
-        state.log(f"📁 Loaded Active Ledger: {state.total_leads} leads ready ({hr_count} HRs, {state.total_leads - hr_count} Candidates).", "success")
+        loaded_name = os.path.basename(target_load_path)
+        state.log(f"📁 Loaded Ledger ({loaded_name}): {state.total_leads} leads ready ({cands_count} Cands, {recs_count} Recs, {fnds_count} Founders).", "success")
     except Exception as e:
-        print(f"Error loading active ledger: {e}")
+        print(f"Error loading ledger: {e}")
 
 @app.get("/", response_class=HTMLResponse)
 async def serve_dashboard():
@@ -132,14 +147,18 @@ async def upload_leads_file(file: UploadFile = File(...)):
         return {"status": "error", "message": str(e)}
 
 class CampaignConfig(BaseModel):
-    daily_limit: int = 40
+    daily_limit: int = 25
     min_delay: int = 45
     max_delay: int = 120
-    target_mode: str = "all"  # "all", "hr_only", "candidates_only"
+    target_mode: str = "dynamic_cohort"  # "dynamic_cohort", "candidates_only", "hr_only", "all"
+    candidate_pct: int = 70
+    recruiter_pct: int = 20
+    founder_pct: int = 10
 
 def is_hr_lead(row):
     persona = str(row.get('Persona', '')).strip().upper()
-    if persona == 'HR':
+    bucket = str(row.get('Persona_Bucket', '')).strip().upper()
+    if persona == 'HR' or bucket in ['RECRUITER_20', 'FOUNDER_10']:
         return True
     hr_keywords = [
         'hr', 'human resource', 'talent', 'recruit', 'people', 
@@ -171,25 +190,52 @@ def run_outreach_worker(config: CampaignConfig):
     pending_mask = ~df['Status'].apply(should_skip)
     
     # Smart Persona Target Filtering
-    if config.target_mode == "hr_only":
+    if config.target_mode == "dynamic_cohort":
+        mode_label = f"⚡ Dynamic Cohort ({config.candidate_pct}% Cand / {config.recruiter_pct}% Rec / {config.founder_pct}% Fnd)"
+        batch = interleave_cohort_batch(
+            df,
+            candidate_pct=config.candidate_pct,
+            recruiter_pct=config.recruiter_pct,
+            founder_pct=config.founder_pct,
+            daily_limit=config.daily_limit
+        )
+    elif config.target_mode == "hr_only":
         mode_mask = df.apply(is_hr_lead, axis=1)
         mode_label = "🎯 HR / Recruiters Only (Priority)"
+        matched_indices = df[pending_mask & mode_mask].index
+        if len(matched_indices) == 0:
+            state.log(f"🎉 No pending leads remaining for mode: {mode_label}!", "success")
+            state.is_running = False
+            return
+        batch_indices = matched_indices[:config.daily_limit]
+        batch = df.loc[batch_indices].copy()
     elif config.target_mode == "candidates_only":
         mode_mask = ~df.apply(is_hr_lead, axis=1)
         mode_label = "💻 Tech Candidates Only"
+        matched_indices = df[pending_mask & mode_mask].index
+        if len(matched_indices) == 0:
+            state.log(f"🎉 No pending leads remaining for mode: {mode_label}!", "success")
+            state.is_running = False
+            return
+        batch_indices = matched_indices[:config.daily_limit]
+        batch = df.loc[batch_indices].copy()
     else:
         mode_mask = pd.Series(True, index=df.index)
         mode_label = "🌐 All Leads (Sequential)"
+        matched_indices = df[pending_mask & mode_mask].index
+        if len(matched_indices) == 0:
+            state.log(f"🎉 No pending leads remaining for mode: {mode_label}!", "success")
+            state.is_running = False
+            return
+        batch_indices = matched_indices[:config.daily_limit]
+        batch = df.loc[batch_indices].copy()
 
-    matched_indices = df[pending_mask & mode_mask].index
-    if len(matched_indices) == 0:
+    if batch.empty:
         state.log(f"🎉 No pending leads remaining for mode: {mode_label}!", "success")
         state.is_running = False
         return
 
-    batch_indices = matched_indices[:config.daily_limit]
-    batch = df.loc[batch_indices].copy()
-    state.log(f"🎯 Mode [{mode_label}] | Processing {len(batch)} targeted profiles (Limit: {config.daily_limit}, Pending in category: {len(matched_indices)}).", "info")
+    state.log(f"🎯 Mode [{mode_label}] | Processing {len(batch)} targeted profiles (Cap: {config.daily_limit}).", "info")
 
     # Step 1: Deep Gemini Enrichment (Names, Gender, Title, Nigerian Origin, Persona)
     leads_payload = []
@@ -285,13 +331,9 @@ def run_outreach_worker(config: CampaignConfig):
                     state.skipped_count += 1
                     continue
 
-                # Prepare persona messages
-                if persona == 'HR':
-                    dm_msg = get_hr_message(first_name, title, is_connect_note=False)
-                    note_msg = get_hr_message(first_name, title, is_connect_note=True)
-                else:
-                    dm_msg = get_candidate_message(first_name, clean_r, is_connect_note=False)
-                    note_msg = get_candidate_message(first_name, clean_r, is_connect_note=True)
+                # Prepare cohort strategy persona messages
+                dm_msg = get_cohort_message(row, is_connect_note=False)
+                note_msg = get_cohort_message(row, is_connect_note=True)
 
                 state.log(f"[{processed_count+1}/{len(batch)}] Visiting {full_name} ({persona} | Role: {clean_r} | Title: {title or 'None'})...", "info")
 
@@ -643,10 +685,52 @@ async def load_preset_file(preset: str = "hr"):
             clean_df.to_excel(CURRENT_LEDGER_PATH, index=False)
             state.log(f"📁 Loaded Preset: HR / Recruiter Specialist List ({len(clean_df)} Leads ready).", "success")
             return {"status": "success", "message": f"Loaded HR list ({len(clean_df)} leads)", "report": report}
+        elif preset == "cohort_audited" or preset == "audited":
+            if os.path.exists(AUDITED_LEADS_PATH):
+                state.active_df = pd.read_excel(AUDITED_LEADS_PATH)
+                state.total_leads = len(state.active_df)
+                state.log(f"📁 Loaded Cohort Audited Pool: {state.total_leads} leads ready.", "success")
+                return {"status": "success", "message": f"Loaded Audited Cohort Pool ({state.total_leads} leads)"}
     except Exception as e:
         state.log(f"❌ Failed to load preset '{preset}': {str(e)}", "error")
         return {"status": "error", "message": str(e)}
     return {"status": "error", "message": "Invalid preset name."}
+
+@app.post("/api/mine_leads")
+async def api_mine_leads(count: int = 50, background_tasks: BackgroundTasks = None):
+    """Triggers background lead mining from GitHub and Nigerian Tech Directory."""
+    def _worker():
+        try:
+            state.log(f"🔎 Mining {count} technical builders & startup hiring partners...", "info")
+            mined_df = run_lead_mining(candidate_count=count, include_companies=True)
+            state.active_df = mined_df
+            state.total_leads = len(mined_df)
+            state.log(f"✅ Lead mining completed! Active pool now has {len(mined_df)} leads.", "success")
+        except Exception as ex:
+            state.log(f"❌ Lead mining error: {str(ex)}", "error")
+
+    threading.Thread(target=_worker, daemon=True).start()
+    return {"status": "started", "message": f"Lead miner started in background for {count} candidates + hiring partners."}
+
+@app.post("/api/audit_icp")
+async def api_audit_icp(background_tasks: BackgroundTasks = None):
+    """Triggers background ICP auditing based on corecvfouningcohortstrategy.pdf."""
+    if state.active_df is None or state.active_df.empty:
+        return {"status": "error", "message": "No active dataset loaded to audit."}
+
+    def _worker():
+        try:
+            state.log(f"🔍 Auditing {len(state.active_df)} leads against Strategy ICP rubric...", "info")
+            audited_df = audit_leads_dataset(state.active_df)
+            state.active_df = audited_df
+            state.total_leads = len(audited_df)
+            passed = int(audited_df["ICP_Fit"].sum())
+            state.log(f"✅ ICP Audit Complete! {passed}/{len(audited_df)} leads qualified. Audited ledger ready.", "success")
+        except Exception as ex:
+            state.log(f"❌ ICP audit error: {str(ex)}", "error")
+
+    threading.Thread(target=_worker, daemon=True).start()
+    return {"status": "started", "message": "ICP Audit started in background."}
 
 @app.get("/api/leads")
 async def get_leads(
