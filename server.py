@@ -670,10 +670,44 @@ async def download_hr_ledger():
         )
     return {"status": "error", "message": "HR leads file not found."}
 
+@app.get("/api/download_candidates")
+async def download_candidates_ledger():
+    cand_path = os.path.join(DATA_DIR, "candidate_master.xlsx")
+
+    # If candidate_master does not exist yet, extract it on the fly
+    if not os.path.exists(cand_path) and os.path.exists(AUDITED_LEADS_PATH):
+        try:
+            df = pd.read_excel(AUDITED_LEADS_PATH)
+            cands = df[df.get('Persona_Bucket', '') == 'CANDIDATE_70']
+            cands.to_excel(cand_path, index=False)
+        except Exception:
+            pass
+
+    if os.path.exists(cand_path):
+        with open(cand_path, "rb") as f:
+            content = f.read()
+        return Response(
+            content=content,
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            headers={"Content-Disposition": "attachment; filename=candidate_master.xlsx"}
+        )
+    return {"status": "error", "message": "Candidate master file not found."}
+
 @app.post("/api/load_preset")
 async def load_preset_file(preset: str = "hr"):
     try:
-        if preset == "hr":
+        if preset == "candidates" or preset == "candidate":
+            cand_path = os.path.join(DATA_DIR, "candidate_master.xlsx")
+            if not os.path.exists(cand_path) and os.path.exists(AUDITED_LEADS_PATH):
+                df = pd.read_excel(AUDITED_LEADS_PATH)
+                cands = df[df.get('Persona_Bucket', '') == 'CANDIDATE_70']
+                cands.to_excel(cand_path, index=False)
+            if os.path.exists(cand_path):
+                state.active_df = pd.read_excel(cand_path)
+                state.total_leads = len(state.active_df)
+                state.log(f"📁 Loaded Preset: Candidate Master List ({state.total_leads} Builders ready).", "success")
+                return {"status": "success", "message": f"Loaded Candidates ({state.total_leads} leads)"}
+        elif preset == "hr":
             hr_path = os.path.join(DATA_DIR, "hr_leads.xlsx")
             if not os.path.exists(hr_path):
                 from extract_hr import extract_clean_hr
