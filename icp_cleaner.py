@@ -79,10 +79,13 @@ def algorithmic_icp_check(lead: Dict[str, Any]) -> Dict[str, Any]:
 
     text_corpus = f"{role} {headline}"
 
+    existing_proof = str(lead.get('Rule9_Concrete_Proof', '')).strip()
+
     # 1. Check if Hiring Partner
     if any(k in text_corpus for k in HIRING_TIER_1_KEYWORDS):
         is_bad_corp = any(b in company for b in DISQUALIFIED_COMPANY_TYPES)
         score = 6 if is_bad_corp else 9
+        proof = existing_proof if existing_proof else f"technical hiring and evaluation at {lead.get('Company', 'your company')}"
         return {
             "icp_fit": not is_bad_corp,
             "icp_score": score,
@@ -90,12 +93,13 @@ def algorithmic_icp_check(lead: Dict[str, Any]) -> Dict[str, Any]:
             "persona_bucket": "RECRUITER_20",
             "hiring_track": "RECRUITER_RESEARCH",
             "icp_reason": "High-value Technical Recruiter / Talent Lead" + (" (Bureaucratic corp warning)" if is_bad_corp else ""),
-            "rule9_proof": f"technical hiring and evaluation at {lead.get('Company', 'your company')}"
+            "rule9_proof": proof
         }
 
     if any(k in text_corpus for k in HIRING_TIER_2_KEYWORDS):
         is_bad_corp = any(b in company for b in DISQUALIFIED_COMPANY_TYPES)
         score = 6 if is_bad_corp else 10
+        proof = existing_proof if existing_proof else f"scaling engineering and candidate discovery at {lead.get('Company', 'your startup')}"
         return {
             "icp_fit": not is_bad_corp,
             "icp_score": score,
@@ -103,7 +107,7 @@ def algorithmic_icp_check(lead: Dict[str, Any]) -> Dict[str, Any]:
             "persona_bucket": "FOUNDER_10",
             "hiring_track": "PARTNER_PILOT",
             "icp_reason": "Top-tier Decision Maker (Founder / CTO / Engineering Head)" + (" (Bureaucratic corp warning)" if is_bad_corp else ""),
-            "rule9_proof": f"scaling engineering and candidate discovery at {lead.get('Company', 'your startup')}"
+            "rule9_proof": proof
         }
 
     if any(k in text_corpus for k in HIRING_TIER_3_KEYWORDS):

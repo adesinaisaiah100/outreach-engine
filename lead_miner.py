@@ -224,12 +224,28 @@ def mine_github_builders(target_count: int = 50, location_queries: List[str] = N
     print(f"✅ Mined {len(leads)} candidate builders from GitHub!")
     return leads
 
-def mine_hiring_partners() -> List[Dict[str, Any]]:
+from job_board_crawler import get_active_hiring_startups
+from startup_researcher import batch_research_startups, generate_hiring_leads_from_startups
+
+def mine_hiring_partners(live_crawl: bool = True, target_count: int = 40) -> List[Dict[str, Any]]:
     """
-    Generates structured company hiring partner targets based on the curated
-    Nigerian high-growth tech ecosystem directory.
-    Splits into 10% Tier 2 (Founders/CTOs) and 20% Tier 1 (Talent Leads/Recruiters).
+    Crawls live Nigerian job boards for pure-play startups with active open developer roles,
+    researches the companies, and generates structured decision-maker leads.
     """
+    if live_crawl:
+        try:
+            print(f"🌐 Sourcing active-hiring pure-play startups from live job boards...")
+            raw_startups = get_active_hiring_startups(target_count=target_count)
+            if raw_startups:
+                print(f"🧠 Researching {len(raw_startups)} startups via Gemini 3.8 Flash...")
+                researched = batch_research_startups(raw_startups)
+                leads = generate_hiring_leads_from_startups(researched)
+                if leads:
+                    return leads
+        except Exception as e:
+            print(f"⚠️ Live crawl error: {e}. Falling back to curated directory.")
+
+    # Fallback to curated directory if offline or error
     hiring_leads = []
     print(f"🏢 Assembling hiring partner targets across {len(CURATED_COMPANIES)} validated startups...")
 
@@ -266,7 +282,7 @@ def mine_hiring_partners() -> List[Dict[str, Any]]:
             "First Name": "Talent Acquisition Lead",
             "Last Name": f"({comp_name})",
             "Position": "Technical Recruiter / Talent Lead",
-            "LinkedIn URL": f"https://www.linkedin.com/company/{comp_name.lower().replace(' ', '')}/people/",
+            "LinkedIn URL": f"https://www.linkedin.com/company/{comp_name.lower().replace(' ', '')}/people/?keywords=recruiter",
             "GitHub URL": "",
             "Email": f"careers@{domain}",
             "Company": comp_name,
@@ -297,9 +313,9 @@ def run_lead_mining(candidate_count: int = 100, include_companies: bool = True, 
         cand_leads = mine_github_builders(target_count=candidate_count)
         all_leads.extend(cand_leads)
 
-    # 2. Mine hiring partners
+    # 2. Mine hiring partners (Live job board crawl for pure-play startups)
     if include_companies:
-        hiring_leads = mine_hiring_partners()
+        hiring_leads = mine_hiring_partners(live_crawl=True, target_count=40)
         all_leads.extend(hiring_leads)
 
     new_df = pd.DataFrame(all_leads)
@@ -309,8 +325,8 @@ def run_lead_mining(candidate_count: int = 100, include_companies: bool = True, 
         try:
             existing_df = pd.read_excel(output_path)
             combined = pd.concat([existing_df, new_df], ignore_index=True)
-            # Deduplicate by LinkedIn URL or GitHub URL
-            subset = ["LinkedIn URL"] if "LinkedIn URL" in combined.columns else None
+            # Deduplicate by Name and Company / GitHub
+            subset = ["First Name", "Last Name", "Company"] if all(c in combined.columns for c in ["First Name", "Last Name", "Company"]) else ["LinkedIn URL"]
             combined = combined.drop_duplicates(subset=subset, keep="first")
             combined.to_excel(output_path, index=False)
             print(f"📁 Master pool updated at: {output_path} (Total: {len(combined)} leads)")
