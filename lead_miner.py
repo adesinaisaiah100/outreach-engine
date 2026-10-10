@@ -478,7 +478,7 @@ def run_lead_mining(candidate_count: int = 100, include_companies: bool = True, 
                 item["ICP_Reason"] = "Verified Technical Builder / Engineer (GitHub Repos)"
                 cand_audited_records.append(item)
             merged_audited = pd.concat([audited_df, pd.DataFrame(cand_audited_records)], ignore_index=True)
-            sub = ["GitHub URL"] if "GitHub URL" in merged_audited.columns else ["First Name", "Last Name"]
+            sub = ["First Name", "Last Name", "Company"] if all(c in merged_audited.columns for c in ["First Name", "Last Name", "Company"]) else ["LinkedIn URL"]
             merged_audited = merged_audited.drop_duplicates(subset=sub, keep="first")
             merged_audited.to_excel(AUDITED_LEADS_PATH, index=False)
             print(f"📁 Audited cohort ledger synced at: {AUDITED_LEADS_PATH} (Total: {len(merged_audited)} leads)", flush=True)
