@@ -693,6 +693,26 @@ async def download_candidates_ledger():
         )
     return {"status": "error", "message": "Candidate master file not found."}
 
+@app.get("/api/download_email_dossier")
+async def download_email_dossier():
+    dossier_path = os.path.join(DATA_DIR, "manual_email_dossier.xlsx")
+    if not os.path.exists(dossier_path):
+        try:
+            from generate_email_dossier import create_manual_email_dossier
+            create_manual_email_dossier()
+        except Exception:
+            pass
+
+    if os.path.exists(dossier_path):
+        with open(dossier_path, "rb") as f:
+            content = f.read()
+        return Response(
+            content=content,
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            headers={"Content-Disposition": "attachment; filename=manual_email_dossier.xlsx"}
+        )
+    return {"status": "error", "message": "Email dossier file not found."}
+
 @app.post("/api/load_preset")
 async def load_preset_file(preset: str = "hr"):
     try:

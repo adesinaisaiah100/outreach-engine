@@ -21,47 +21,65 @@ SENDER_NAME = os.environ.get("SENDER_NAME", "Oluwatimileyin").strip()
 PRODUCT_NAME = os.environ.get("PRODUCT_NAME", "CoreCV").strip()
 
 def build_candidate_copy(first_name: str, rule9_proof: str, role: str = "engineer", is_connect_note: bool = False) -> str:
-    """Founding Professional outreach message (from PDF Pages 7-8)."""
-    proof_fragment = rule9_proof.strip() if rule9_proof else f"noticed your technical background in {role}"
-    # Ensure smooth grammar if proof already starts with 'noticed' or 'saw'
-    if proof_fragment.lower().startswith("noticed ") or proof_fragment.lower().startswith("saw "):
-        proof_intro = proof_fragment
+    """Founding Professional outreach message strictly from Section 8 & 9 (PDF Page 7)."""
+    clean_proof = rule9_proof.strip() if rule9_proof else f"your technical background in {role}"
+    
+    # Strip any leading 'noticed ', 'saw ', 'came across ' to avoid duplicate words
+    for prefix in ["noticed ", "saw ", "came across "]:
+        if clean_proof.lower().startswith(prefix):
+            clean_proof = clean_proof[len(prefix):].strip()
+            break
+            
+    if not clean_proof.lower().startswith("your work on ") and not clean_proof.lower().startswith("your "):
+        proof_text = f"your work on {clean_proof}"
     else:
-        proof_intro = f"noticed your work in {proof_fragment}"
+        proof_text = clean_proof
 
     if is_connect_note:
+        # Strict <280 char limit with word-boundary safe trimming
+        max_proof_len = max(20, 275 - len(f"Hi {first_name}, noticed . Building {PRODUCT_NAME}: CVs often miss the actual work tech builders have done. We're launching a small founding cohort testing evidence records with hiring partners. Open to seeing the details?"))
+        if len(proof_text) > max_proof_len:
+            trimmed = proof_text[:max_proof_len]
+            last_break = max(trimmed.rfind(" "), trimmed.rfind("-"), trimmed.rfind("_"))
+            target_proof = trimmed[:last_break] if last_break > 15 else trimmed
+        else:
+            target_proof = proof_text
+
         note = (
-            f"Hi {first_name}, I {proof_intro}. "
-            f"Building CoreCV: testing an evidence-backed record (projects, code, contributions) "
-            f"for professionals to get discovered by hiring partners. Would love to send cohort details!"
+            f"Hi {first_name}, noticed {target_proof}. "
+            f"Building {PRODUCT_NAME}: CVs often miss the actual work tech builders have done. "
+            f"We're launching a small founding cohort testing evidence records with hiring partners. "
+            f"Open to seeing the details?"
         )
         return note[:280]
 
     return (
         f"Hi {first_name},\n\n"
-        f"I came across your profile and {proof_intro}.\n\n"
-        f"I'm building {PRODUCT_NAME} around a problem I keep seeing with early-career and growing tech "
-        f"professionals: a traditional CV often doesn't capture the actual work you've done.\n\n"
+        f"I came across your profile and noticed {proof_text}.\n\n"
+        f"I'm building {PRODUCT_NAME} around a problem I keep seeing with early-career tech "
+        f"professionals: a CV often doesn't capture the actual work they've done.\n\n"
         f"We're putting together a small founding cohort where professionals will build an "
-        f"evidence-backed professional record - projects, contributions, skills, and supporting "
-        f"proof - rather than relying only on a traditional CV.\n\n"
+        f"evidence-backed professional record — projects, contributions, skills and supporting "
+        f"proof — rather than relying only on a traditional CV.\n\n"
         f"The strongest completed records will be made available for consideration by participating "
         f"hiring partners.\n\n"
-        f"I thought your background would make you a strong fit for the cohort. "
+        f"I thought your background would make you a strong fit for the cohort.\n\n"
         f"Would you like me to send you the details?\n\n"
         f"Best,\n{SENDER_NAME}"
     )
 
 def build_founder_copy(first_name: str, company: str, rule9_proof: str = "", is_connect_note: bool = False) -> str:
-    """Hiring Partner Discovery message for Founders/CTOs/Heads of Eng (PDF Page 10)."""
-    clean_company = company.strip() if company else "your company"
+    """Hiring Partner Discovery message strictly from Section 13 (PDF Page 10)."""
+    clean_company = company.strip() if company else "your team"
+    if len(clean_company) > 30:
+        clean_company = clean_company[:27] + "..."
     
     if is_connect_note:
         note = (
-            f"Hi {first_name}, I'm {SENDER_NAME}, building CoreCV. "
-            f"We're launching a founding cohort of tech professionals with verified project evidence. "
-            f"Looking for growing teams like {clean_company} as free founding hiring partners. "
-            f"Open to a 15-min chat?"
+            f"Hi {first_name}, I'm {SENDER_NAME}, building {PRODUCT_NAME}. "
+            f"We're assembling a founding cohort of tech builders creating evidence records (not CVs). "
+            f"We're inviting growing teams like {clean_company} as free founding hiring partners. "
+            f"Open to a quick 15-min chat?"
         )
         return note[:280]
 
@@ -69,8 +87,8 @@ def build_founder_copy(first_name: str, company: str, rule9_proof: str = "", is_
         f"Hi {first_name},\n\n"
         f"I'm {SENDER_NAME}, building {PRODUCT_NAME}.\n\n"
         f"We're putting together a small founding cohort of early-career tech professionals who will "
-        f"spend the next few weeks building evidence-backed professional records - projects, "
-        f"contributions, skills and supporting proof - rather than relying only on traditional CVs.\n\n"
+        f"spend the next few weeks building evidence-backed professional records — projects, "
+        f"contributions, skills and supporting proof — rather than relying only on traditional CVs.\n\n"
         f"We're looking for a few growing technology companies like {clean_company} to participate "
         f"as founding hiring partners.\n\n"
         f"There is no cost during the founding program. The idea is to let companies evaluate a "
@@ -83,12 +101,13 @@ def build_founder_copy(first_name: str, company: str, rule9_proof: str = "", is_
     )
 
 def build_recruiter_copy(first_name: str, company: str = "", is_connect_note: bool = False) -> str:
-    """Recruiter Research message for Technical Talent Acquisition (PDF Page 10)."""
+    """Recruiter Research message strictly from Section 14 (PDF Page 10)."""
     if is_connect_note:
         note = (
-            f"Hi {first_name}, I'm {SENDER_NAME}, building CoreCV. "
-            f"Researching how technical recruiters evaluate candidates beyond CVs (GitHub, code, proof). "
-            f"Not selling anything - would love 15 mins to learn from your hiring experience!"
+            f"Hi {first_name}, I'm {SENDER_NAME}, building {PRODUCT_NAME}. "
+            f"Researching how recruiters evaluate tech candidates beyond the CV (GitHub, code, proof). "
+            f"Not selling anything - exploring where validating skill gets difficult. "
+            f"Open to a quick 15-min chat?"
         )
         return note[:280]
 
@@ -96,7 +115,7 @@ def build_recruiter_copy(first_name: str, company: str = "", is_connect_note: bo
         f"Hi {first_name},\n\n"
         f"I'm {SENDER_NAME}, building {PRODUCT_NAME}.\n\n"
         f"We're researching how recruiters and hiring teams actually evaluate technical candidates "
-        f"beyond the CV - particularly when someone's experience is spread across GitHub, "
+        f"beyond the CV — particularly when someone's experience is spread across GitHub, "
         f"projects, portfolios, freelance work and other evidence.\n\n"
         f"I'm not trying to sell you anything. I'd genuinely like to understand how you currently "
         f"discover and shortlist candidates and where establishing confidence in someone's ability "
