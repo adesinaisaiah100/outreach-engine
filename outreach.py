@@ -69,7 +69,7 @@ def batch_enrich_leads(leads_data):
     
     try:
         client = genai.Client(api_key=GEMINI_API_KEY)
-        models_to_try = ['gemini-flash-latest', 'gemini-flash-lite-latest', 'gemini-2.5-flash']
+        models_to_try = ['gemini-3.8-flash', 'gemini-flash-latest', 'gemini-flash-lite-latest']
         response = None
         for m in models_to_try:
             try:

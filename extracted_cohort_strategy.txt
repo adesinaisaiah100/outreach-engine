@@ -1,0 +1,483 @@
+CoreCV Founding Cohort
+Partner Acquisition & Founding User Marketing Strategy
+Campaign objective
+1. The Founding Cohort
+For professionals
+Professional identity
+Projects
+Work experience
+Contributions
+Skills
+Outcomes
+GitHub repositories
+Live products
+Portfolio work
+Certifications
+Testimonials
+Other supporting evidence
+CoreCV is moving beyond a traditional waitlist.
+The goal of the founding cohort is to test the core thesis behind CoreCV:
+Can a professional build a credible, evidence-backed record of what they can 
+actually do, and can companies use that record to discover and evaluate 
+talent without relying entirely on the traditional CV/application process?
+The founding program therefore needs both sides of the market:
+Professionals → build credible records
+Hiring partners → discover and evaluate those records
+The campaign should build both sides simultaneously, with greater initial emphasis on 
+securing hiring partners.
+Selected early-career and growing tech professionals join a structured cohort.
+Over a defined period, participants build their CoreCV professional record:
+CoreCV helps participants turn scattered evidence into a coherent professional record.
+--- PAGE ---
+Desired outcome
+2. For hiring partners
+Tell CoreCV how they currently discover candidates.
+Explain what evidence they need before trusting a candidate.
+Review selected CoreCV records.
+Identify candidates who may fit real hiring needs.
+Provide feedback on whether evidence-based discovery is useful.
+Potentially interview qualified participants for relevant roles.
+3. Do not promise jobs blindly
+Public positioning
+Participants are evaluated based on the quality and completeness of their evidence, 
+not simply how much information they upload.
+Participants who meet the program's readiness criteria become eligible to have their 
+records surfaced to participating hiring partners.
+CoreCV recruits a small group of startups, technology companies, founders, recruiters 
+and hiring teams as Founding Hiring Partners.
+Partners participate for free during the founding program.
+Their role is to:
+The partner is not being asked to “use another job board.”
+The proposition is:
+Evaluate a small pool of professionals through the evidence of what they 
+have actually done.
+The founding program should not publicly promise:
+“Complete your profile and you will get a job.”
+That creates an outcome CoreCV cannot completely control.
+Instead:
+Build your professional record. Get discovered by hiring partners.
+Or:
+--- PAGE ---
+4. Program criteria
+Build the evidence. Become discoverable. Get considered for real 
+opportunities.
+Participants become eligible for consideration when they satisfy defined program criteria.
+If a hiring partner has a relevant role, CoreCV can surface suitable participants to that 
+company.
+If CoreCV later secures partners willing to guarantee interviews or offers under specific 
+conditions, those guarantees can be stated separately and precisely.
+Do not measure success using profile completion alone.
+A participant could upload dozens of certificates and still provide little useful evidence.
+CoreCV should evaluate several dimensions:
+Dimensio
+n
+What it 
+measures
+Professio
+nal 
+identity
+Clarity 
+about 
+what the 
+person 
+does
+Work 
+evidence
+Projects, 
+employme
+nt, 
+freelance/
+open-
+source 
+work
+Contributi
+on
+What the 
+participant 
+--- PAGE ---
+personally 
+did
+OutcomesWhat 
+resulted 
+from their 
+work
+Supportin
+g 
+evidence
+Links, 
+GitHub, 
+screensho
+ts, 
+document
+s, etc.
+Skill 
+evidence
+Demonstr
+ated 
+ability 
+rather 
+than 
+claims
+Complete
+ness
+Whether 
+important 
+areas are 
+properly 
+document
+ed
+Verificatio
+n
+How 
+much of 
+the record 
+can be 
+substantia
+ted
+--- PAGE ---
+5. Campaign structure
+Funnel A — Founding Professionals
+Funnel B — Founding Hiring Partners
+10–15 meaningful hiring conversations
+3–5 companies interested in the program
+2–3 companies willing to actively evaluate candidates
+At least 1–2 companies with a realistic hiring use case
+6. Outreach allocation
+Recommended allocation
+The ultimate concept should be a CoreCV Readiness state.
+CoreCV Ready = enough credible evidence exists for a hiring team to 
+meaningfully evaluate this person.
+The campaign has two acquisition funnels.
+Goal:
+61 existing waitlist users → 100–130+ qualified founding users
+The goal is not merely collecting emails.
+The stronger metric is:
+Waitlist → activated founding participant → completed professional record
+Goal over the initial sprint:
+The companies do not need to commit to hiring someone immediately.
+The first commitment can simply be:
+“We are willing to review suitable CoreCV candidates when relevant.”
+That is enough to establish early demand.
+Run both campaigns simultaneously.
+60% — Hiring partners
+40% — Founding professionals
+Why?
+Because candidate acquisition is easier when you can say:
+--- PAGE ---
+7. Founding professional target audience
+Highest-priority groups
+Software engineers
+AI engineers
+ML engineers
+Frontend engineers
+Backend engineers
+Full-stack engineers
+Product designers
+Product managers
+Data analysts
+Data scientists
+DevOps/cloud engineers
+QA engineers
+Technical freelancers
+Open-source contributors
+Hackathon builders
+Early-career tech professionals
+Career switchers with substantial project evidence
+Strong signals
+Have GitHub repositories
+Build projects
+Have shipped products
+Participate in hackathons
+Have freelance work
+“There are companies participating in this founding cohort.”
+But do not wait until every partner is secured.
+Start both immediately.
+Prioritize professionals who already have evidence that is poorly represented by a 
+traditional CV.
+Prioritize people who:
+--- PAGE ---
+Have open-source contributions
+Have portfolios
+Recently graduated
+Are early in their career
+Are actively looking for opportunities
+Are transitioning into tech
+Have strong skills but limited formal experience
+8. Founding professional outreach message
+Initial message
+9. Personalization rule
+These people have a direct reason to care about CoreCV.
+Hi [Name],
+I came across your profile and noticed your work in [specific area/project].
+I'm building CoreCV around a problem I keep seeing with early-career tech 
+professionals: a CV often doesn't capture the actual work they've done.
+We're putting together a small founding cohort where professionals will build an 
+evidence-backed professional record — projects, contributions, skills and supporting 
+proof — rather than relying only on a traditional CV.
+The strongest completed records will be made available for consideration by participating 
+hiring partners.
+I thought your background would make you a strong fit for the cohort.
+Would you like me to send you the details?
+Never send:
+“I noticed your impressive background...”
+Instead identify one concrete reason.
+Examples:
+“I noticed you've built several projects around AI...”
+“I came across your GitHub and saw the work you've done with...”
+“I noticed you've moved from frontend into AI engineering...”
+--- PAGE ---
+10. Hiring partner target
+Tier 1
+Technical Recruiter
+Technical Talent Acquisition
+Talent Acquisition Lead
+Recruiting Lead
+Head of Talent
+Talent Acquisition Manager
+Engineering Recruiter
+Tier 2
+Founder
+Co-founder
+CTO
+Head of Engineering
+Engineering Manager
+Head of People
+Tier 3
+HR Manager
+People Operations
+Recruitment Agency owners
+11. What companies to target
+“You seem to have a lot of project-based experience despite being early in your 
+career...”
+The objective is to make the message feel selected, not broadcast.
+Do not search for “HR” broadly.
+The best targets are people who directly experience technical hiring.
+The key question is:
+Does this person actually help discover, evaluate or hire candidates?
+If not, they are probably not an important CoreCV research target.
+--- PAGE ---
+10–200 employee startups
+Technology companies
+SaaS companies
+Fintech
+Healthtech
+AI companies
+Developer tools
+Digital product companies
+Remote-first companies
+Companies actively hiring engineers
+Fast-growing African startups
+Nigerian technology companies
+Companies hiring internationally
+12. LinkedIn company discovery strategy
+Search for companies that:
+Recently raised funding
+Are hiring engineers
+Are growing their team
+Have several open technical roles
+Recently launched products
+Are expanding into new markets
+Have 10–200 employees
+Prioritize:
+Avoid spending too much time initially on huge corporations.
+Large companies have more bureaucracy, established ATS systems and longer 
+procurement cycles.
+A 30-person startup where the founder personally interviews engineers can give CoreCV 
+dramatically better early feedback.
+Do not start by searching thousands of HR professionals.
+Start with companies.
+Then inspect the company page and identify:
+--- PAGE ---
+13. Hiring partner discovery message
+14. Recruiter research message
+Founder → CTO → Head of Engineering → Talent Lead → Technical Recruiter
+Contact the person closest to the hiring decision.
+Hi [Name],
+I'm Oluwatimileyin, building CoreCV.
+We're putting together a small founding cohort of early-career tech professionals who will 
+spend the next few weeks building evidence-backed professional records — projects, 
+contributions, skills and supporting proof — rather than relying only on traditional CVs.
+We're looking for a few growing technology companies to participate as founding hiring 
+partners.
+There is no cost during the founding program. The idea is to let companies evaluate a 
+small pool of candidates through the evidence they've built and help us understand 
+whether this makes candidate discovery and evaluation easier.
+I'd first love to understand how your team currently hires technical talent and where the 
+process becomes difficult.
+Would you be open to a 15-minute conversation?
+For recruiters where the primary objective is learning rather than immediately recruiting 
+them as a partner:
+Hi [Name],
+I'm Oluwatimileyin, building CoreCV.
+We're researching how recruiters and hiring teams actually evaluate technical candidates 
+beyond the CV — particularly when someone's experience is spread across GitHub, 
+projects, portfolios, freelance work and other evidence.
+I'm not trying to sell you anything. I'd genuinely like to understand how you currently 
+discover and shortlist candidates and where establishing confidence in someone's ability 
+becomes difficult.
+Would you be open to a short 15-minute conversation sometime this week?
+--- PAGE ---
+15. Do not immediately pitch CoreCV during the 
+interview
+Candidate discovery
+1. Where do your technical candidates normally come from?
+2. What happens after you receive a CV?
+3. How do you decide which candidates deserve a closer look?
+4. Do recruiters actually inspect GitHub/portfolios/projects?
+5. If yes, when?
+6. What makes you trust the evidence?
+7. What makes you distrust it?
+Evaluation
+8. What information do you wish candidates provided more clearly?
+9. What are the biggest false signals on CVs?
+10. What takes the most time when evaluating candidates?
+11. What causes a candidate to look promising but eventually fail evaluation?
+Hiring workflow
+12. How many candidates typically enter the funnel?
+13. How many make it to serious consideration?
+14. Where does the biggest drop-off happen?
+15. What does your ATS handle well?
+16. What does it not solve?
+Product validation
+17. If candidate evidence were structured and available before you contacted them, 
+what would be useful?
+18. What would make you trust such a record?
+19. What would stop you from using it?
+20. What would make you actually pay for it?
+The first recruiter conversation should primarily be discovery.
+Questions:
+The objective is to discover the real workflow, not convince them that CoreCV is 
+correct.
+--- PAGE ---
+16. Converting research conversations into partners
+17. Four-day campaign
+Day 1 — Establish the market
+Hiring
+20 highly targeted recruiters/founders/CTOs
+5–10 startup hiring teams
+Professionals
+30–40 carefully selected professionals
+Day 2 — Follow up + expand
+20–30 hiring contacts
+30–40 professionals
+At the end of a strong conversation:
+“Based on what you've described, we're actually building something around this 
+exact part of the process. We're putting together a small founding cohort of 
+professionals and looking for a few companies willing to test the discovery side with 
+us for free. Would you be interested in seeing how it works once the first records 
+are ready?”
+This is much stronger than opening the conversation with:
+“Would you like to partner with CoreCV?”
+Contact:
+Goal:
+3–5 conversations booked
+Contact:
+Goal:
+10–15 positive responses
+Continue:
+Prioritize whichever segments produced the strongest response on Day 1.
+Do not blindly keep sending the same message.
+--- PAGE ---
+Day 3 — Activate the network
+New professionals
+Recruiters
+Founders
+Startup hiring managers
+Day 4 — Convert
+Professional side
+Hiring side
+18. Metrics to track
+Professionals
+Contact:
+Also ask existing founding users:
+“Do you know 1–2 other tech professionals who have projects or work they would 
+like better represented?”
+Turn the first 61 waitlist users into a distribution channel.
+By Day 4:
+Target:
+100–130+ waitlist
+Then identify:
+15–25 highly motivated founding participants
+These are the people who will actually build their records.
+Target:
+3–5 interested companies
+Then convert:
+2–3 into active founding hiring partners
+Do not track only:
+Messages sent → waitlist signups
+Track the entire funnel.
+--- PAGE ---
+Hiring
+Messages sent
+↓
+Connection accepted
+↓
+Reply
+↓
+Interested
+↓
+Waitlist signup
+↓
+Founding cohort accepted
+↓
+Master Vault started
+↓
+Evidence added
+↓
+CoreCV Ready
+↓
+Hiring partner viewed
+↓
+Interview
+↓
+Offer
+Messages sent
+↓
+Connection accepted
+↓
+Reply
+↓
+Research call
+↓
+Interested in cohort
+--- PAGE ---
+19. The core campaign positioning
+Another CV builder
+Another LinkedIn
+Another job board
+Another ATS
+Another AI resume writer
+20. Immediate priority
+Secure the first hiring partners.
+↓
+Founding partner
+↓
+Candidate records reviewed
+↓
+Candidate shortlisted
+↓
+Interview
+↓
+Hire
+This is how CoreCV will eventually prove whether the model actually works.
+Do not market CoreCV as:
+The founding cohort should demonstrate a different idea:
+Professionals build the evidence. Companies discover and evaluate the 
+evidence.
+The professional is not simply creating a prettier CV.
+The company is not simply receiving another application.
+CoreCV is testing whether a persistent professional evidence layer can sit between 
+the two.
+Before scaling the professional campaign aggressively:
+Not 20.
+Not 50.
+--- PAGE ---
+A live two-sided experiment in evidence-based hiring.
+Start with 2–3.
+At the same time, continue recruiting professionals so the candidate side doesn't stop.
+The ideal early state is:
+100+ professionals interested
+2–3 companies willing to evaluate suitable participants
+15–25 professionals actually building their records
+10+ recruiter/hiring conversations
+That gives CoreCV something much more valuable than a waitlist:
