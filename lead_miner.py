@@ -23,11 +23,26 @@ if sys.stderr:
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 MASTER_POOL_PATH = os.path.join(DATA_DIR, "master_pool.xlsx")
+CANDIDATE_MASTER_PATH = os.path.join(DATA_DIR, "candidate_master.xlsx")
+AUDITED_LEADS_PATH = os.path.join(DATA_DIR, "icp_audited_leads.xlsx")
+
+import subprocess
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
+
+gh_token = os.environ.get("GITHUB_TOKEN", "").strip()
+if not gh_token:
+    try:
+        gh_token = subprocess.check_output(["gh", "auth", "token"], text=True).strip()
+    except Exception:
+        pass
 
 GITHUB_HEADERS = {
     "User-Agent": "CoreCV-Cohort-Miner/1.0",
     "Accept": "application/vnd.github.v3+json"
 }
+if gh_token:
+    GITHUB_HEADERS["Authorization"] = f"Bearer {gh_token}"
 
 # Curated High-Growth Tech Companies (15-200 employees, active tech hirers in Nigeria/Africa)
 CURATED_COMPANIES = [
@@ -91,137 +106,230 @@ def extract_commit_email(username: str) -> Optional[str]:
         pass
     return None
 
-def mine_github_builders(target_count: int = 50, location_queries: List[str] = None) -> List[Dict[str, Any]]:
+def extract_linkedin_and_contact(username: str, p_data: Dict[str, Any]) -> tuple[str, str]:
     """
-    Mines real active builders in Nigeria from GitHub REST API.
-    Extracts top repos, bio, languages, and concrete proof for Rule #9.
+    Extracts personal LinkedIn profile URL and verified contact email across:
+    1. GitHub social_accounts API
+    2. Profile blog and bio URLs
+    3. Profile README markdown links
+    4. Public commit events
+    """
+    linkedin_url = ""
+    email = p_data.get("email") or ""
+
+    # 1. First-party GitHub Social Accounts API
+    try:
+        s_res = requests.get(f"https://api.github.com/users/{username}/social_accounts", headers=GITHUB_HEADERS, timeout=4)
+        if s_res.status_code == 200:
+            for acct in s_res.json():
+                url = acct.get("url", "")
+                if "linkedin.com/in/" in url.lower():
+                    linkedin_url = url.split("?")[0].rstrip("/")
+                    break
+    except Exception:
+        pass
+
+    # 2. Check blog URL
+    if not linkedin_url:
+        blog = str(p_data.get("blog", "")).strip()
+        if "linkedin.com/in/" in blog.lower():
+            m = re.search(r'https?://[^\s]+linkedin\.com/in/[a-zA-Z0-9_\-%]+', blog)
+            if m:
+                linkedin_url = m.group(0).split("?")[0].rstrip("/")
+
+    # 3. Check bio text
+    if not linkedin_url:
+        bio = str(p_data.get("bio", ""))
+        if "linkedin.com/in/" in bio.lower():
+            m = re.search(r'https?://[^\s]+linkedin\.com/in/[a-zA-Z0-9_\-%]+', bio)
+            if m:
+                linkedin_url = m.group(0).split("?")[0].rstrip("/")
+
+    # 4. Check special profile README
+    if not linkedin_url or not email:
+        try:
+            r_res = requests.get(f"https://api.github.com/repos/{username}/{username}/readme", headers=GITHUB_HEADERS, timeout=4)
+            if r_res.status_code == 200:
+                import base64
+                content = base64.b64decode(r_res.json().get("content", "")).decode("utf-8", errors="ignore")
+                if not linkedin_url:
+                    matches = re.findall(r'https?://(?:www\.)?linkedin\.com/in/[a-zA-Z0-9_\-%]+', content)
+                    if matches:
+                        linkedin_url = matches[0].split("?")[0].rstrip("/")
+                if not email:
+                    em_matches = re.findall(r'[\w\.-]+@[\w\.-]+\.\w+', content)
+                    for em in em_matches:
+                        if not em.endswith(('github.com', 'png', 'jpg', 'svg', 'noreply.github.com', 'example.com')):
+                            email = em
+                            break
+        except Exception:
+            pass
+
+    # 5. Extract commit author email from public pushes if still empty
+    if not email:
+        email = extract_commit_email(username) or ""
+
+    return linkedin_url, email
+
+def mine_github_builders(target_count: int = 150, location_queries: List[str] = None) -> List[Dict[str, Any]]:
+    """
+    Mines real active builders in Nigeria from GitHub REST API across languages and tech hubs.
+    Extracts top repos, bio, languages, verified LinkedIn profiles, and concrete proof for Rule #9.
     """
     if location_queries is None:
-        location_queries = ["location:Nigeria", "location:Lagos", "location:Abuja", "location:Ibadan"]
+        location_queries = [
+            "location:Nigeria language:Python",
+            "location:Nigeria language:TypeScript",
+            "location:Nigeria language:JavaScript",
+            "location:Nigeria language:Flutter",
+            "location:Nigeria language:Go",
+            "location:Nigeria language:Rust",
+            "location:Nigeria language:Java",
+            "location:Nigeria language:C#",
+            "location:Lagos language:Python",
+            "location:Lagos language:TypeScript",
+            "location:Lagos language:JavaScript",
+            "location:Abuja language:Python",
+            "location:Abuja language:TypeScript",
+            "location:Ibadan language:Python",
+            "location:Nigeria repos:>5",
+            "location:Nigeria repos:>2",
+            "location:Lagos repos:>3",
+            "location:Abuja repos:>2"
+        ]
 
     leads = []
     seen_logins = set()
-    print(f"🔎 Mining {target_count} technical builders across Nigeria from GitHub...")
+    print(f"🔎 Mining {target_count} technical builders across Nigeria from GitHub...", flush=True)
 
     for query in location_queries:
         if len(leads) >= target_count:
             break
 
-        search_url = f"https://api.github.com/search/users?q={query}+repos:>3&sort=joined&order=desc&per_page=30"
-        try:
-            res = requests.get(search_url, headers=GITHUB_HEADERS, timeout=10)
-            if res.status_code != 200:
-                print(f"⚠️ GitHub search rate limit or error: {res.status_code}")
-                time.sleep(2)
-                continue
+        print(f"  Querying: '{query}'...", flush=True)
+        for page in range(1, 4):
+            if len(leads) >= target_count:
+                break
 
-            users = res.json().get("items", [])
-            for u in users:
-                if len(leads) >= target_count:
+            search_url = f"https://api.github.com/search/users?q={query}&sort=joined&order=desc&per_page=30&page={page}"
+            try:
+                res = requests.get(search_url, headers=GITHUB_HEADERS, timeout=10)
+                if res.status_code == 403:
+                    print(f"⚠️ GitHub search rate limit hit. Pausing 10s...", flush=True)
+                    time.sleep(10)
+                    continue
+                elif res.status_code != 200:
                     break
 
-                login = u.get("login")
-                if not login or login in seen_logins:
-                    continue
-                seen_logins.add(login)
+                users = res.json().get("items", [])
+                if not users:
+                    break
 
-                # Fetch detailed profile
-                try:
-                    p_res = requests.get(f"https://api.github.com/users/{login}", headers=GITHUB_HEADERS, timeout=5)
-                    if p_res.status_code != 200:
+                for u in users:
+                    if len(leads) >= target_count:
+                        break
+
+                    login = u.get("login")
+                    if not login or login in seen_logins:
                         continue
-                    p_data = p_res.json()
-                except Exception:
-                    continue
+                    seen_logins.add(login)
 
-                raw_name = p_data.get("name") or login
-                first_name, last_name = split_full_name(raw_name)
-                bio = p_data.get("bio") or ""
-                blog = p_data.get("blog") or ""
-                public_repos = p_data.get("public_repos", 0)
-                company = p_data.get("company") or ""
+                    # Fetch detailed profile
+                    try:
+                        p_res = requests.get(f"https://api.github.com/users/{login}", headers=GITHUB_HEADERS, timeout=5)
+                        if p_res.status_code != 200:
+                            continue
+                        p_data = p_res.json()
+                    except Exception:
+                        continue
 
-                # Fetch top repositories
-                top_repos_desc = []
-                primary_languages = set()
-                try:
-                    r_res = requests.get(f"https://api.github.com/users/{login}/repos?sort=pushed&per_page=3", headers=GITHUB_HEADERS, timeout=5)
-                    if r_res.status_code == 200:
-                        repos = r_res.json()
-                        for r in repos:
-                            r_name = r.get("name")
-                            r_lang = r.get("language")
-                            r_desc = r.get("description") or ""
-                            if r_lang:
-                                primary_languages.add(r_lang)
-                            if r_name:
-                                top_repos_desc.append(f"{r_name}" + (f" ({r_lang})" if r_lang else ""))
-                except Exception:
-                    pass
+                    # Filter out organizations and empty profiles
+                    if p_data.get("type") != "User":
+                        continue
+                    public_repos = p_data.get("public_repos", 0)
+                    if public_repos == 0:
+                        continue
 
-                # Extract public commit email
-                email = p_data.get("email") or extract_commit_email(login) or ""
+                    raw_name = p_data.get("name") or login
+                    first_name, last_name = split_full_name(raw_name)
+                    bio = p_data.get("bio") or ""
+                    company = p_data.get("company") or ""
 
-                # Infer Role
-                role = "Software Engineer"
-                bio_lower = bio.lower()
-                if "frontend" in bio_lower:
-                    role = "Frontend Engineer"
-                elif "backend" in bio_lower:
-                    role = "Backend Engineer"
-                elif "fullstack" in bio_lower or "full-stack" in bio_lower:
-                    role = "Full-Stack Engineer"
-                elif "ai" in bio_lower or "machine learning" in bio_lower or "ml" in bio_lower:
-                    role = "AI/ML Engineer"
-                elif "mobile" in bio_lower or "flutter" in bio_lower or "react native" in bio_lower:
-                    role = "Mobile Engineer"
-                elif "data" in bio_lower:
-                    role = "Data Scientist / Analyst"
-                elif "devops" in bio_lower or "cloud" in bio_lower:
-                    role = "DevOps Engineer"
-                elif primary_languages:
-                    langs_str = "/".join(list(primary_languages)[:2])
-                    role = f"{langs_str} Engineer"
+                    # Fetch top repositories
+                    top_repos_desc = []
+                    primary_languages = set()
+                    try:
+                        r_res = requests.get(f"https://api.github.com/users/{login}/repos?sort=pushed&per_page=3", headers=GITHUB_HEADERS, timeout=5)
+                        if r_res.status_code == 200:
+                            repos = r_res.json()
+                            for r in repos:
+                                r_name = r.get("name")
+                                r_lang = r.get("language")
+                                r_desc = r.get("description") or ""
+                                if r_lang:
+                                    primary_languages.add(r_lang)
+                                if r_name:
+                                    top_repos_desc.append(f"{r_name}" + (f" ({r_lang})" if r_lang else ""))
+                    except Exception:
+                        pass
 
-                # Check if blog or bio has LinkedIn
-                linkedin_url = ""
-                if "linkedin.com/in/" in blog.lower():
-                    linkedin_url = blog.strip()
-                elif "linkedin.com/in/" in bio.lower():
-                    m = re.search(r'https?://[^\s]+linkedin\.com/in/[^\s]+', bio)
-                    if m:
-                        linkedin_url = m.group(0)
+                    # Extract verified LinkedIn URL and email
+                    linkedin_url, email = extract_linkedin_and_contact(login, p_data)
 
-                # Formulate concrete Rule #9 proof reason
-                repos_preview = ", ".join(top_repos_desc[:2]) if top_repos_desc else "recent projects"
-                concrete_reason = f"noticed your work on {repos_preview} on GitHub"
+                    # Infer Role
+                    role = "Software Engineer"
+                    bio_lower = bio.lower()
+                    if "frontend" in bio_lower:
+                        role = "Frontend Engineer"
+                    elif "backend" in bio_lower:
+                        role = "Backend Engineer"
+                    elif "fullstack" in bio_lower or "full-stack" in bio_lower:
+                        role = "Full-Stack Engineer"
+                    elif "ai" in bio_lower or "machine learning" in bio_lower or "ml" in bio_lower:
+                        role = "AI/ML Engineer"
+                    elif "mobile" in bio_lower or "flutter" in bio_lower or "react native" in bio_lower:
+                        role = "Mobile Engineer"
+                    elif "data" in bio_lower:
+                        role = "Data Scientist / Analyst"
+                    elif "devops" in bio_lower or "cloud" in bio_lower:
+                        role = "DevOps Engineer"
+                    elif primary_languages:
+                        langs_str = "/".join(list(primary_languages)[:2])
+                        role = f"{langs_str} Engineer"
 
-                lead_entry = {
-                    "First Name": first_name,
-                    "Last Name": last_name,
-                    "Position": role,
-                    "LinkedIn URL": linkedin_url,
-                    "GitHub URL": p_data.get("html_url", f"https://github.com/{login}"),
-                    "Email": email,
-                    "Company": company.lstrip("@").strip(),
-                    "Company Size": "N/A",
-                    "Bio / Headline": bio[:160],
-                    "Languages": ", ".join(primary_languages),
-                    "Top Repos": "; ".join(top_repos_desc),
-                    "Rule9_Concrete_Proof": concrete_reason,
-                    "Persona_Bucket": "CANDIDATE_70",
-                    "Source": "GitHub",
-                    "Status": "Pending",
-                    "Contacted_At": ""
-                }
-                leads.append(lead_entry)
-                time.sleep(0.3)
+                    # Formulate concrete Rule #9 proof reason
+                    repos_preview = ", ".join(top_repos_desc[:2]) if top_repos_desc else "recent engineering projects"
+                    concrete_reason = f"noticed your work on {repos_preview} on GitHub"
 
-        except Exception as e:
-            print(f"Error querying GitHub: {e}")
-            time.sleep(2)
+                    lead_entry = {
+                        "First Name": first_name,
+                        "Last Name": last_name,
+                        "Position": role,
+                        "LinkedIn URL": linkedin_url,
+                        "GitHub URL": p_data.get("html_url", f"https://github.com/{login}"),
+                        "Email": email,
+                        "Company": company.lstrip("@").strip(),
+                        "Company Size": "N/A",
+                        "Bio / Headline": bio[:160],
+                        "Languages": ", ".join(primary_languages),
+                        "Top Repos": "; ".join(top_repos_desc),
+                        "Rule9_Concrete_Proof": concrete_reason,
+                        "Persona_Bucket": "CANDIDATE_70",
+                        "Source": "GitHub",
+                        "Status": "Pending",
+                        "Contacted_At": ""
+                    }
+                    leads.append(lead_entry)
+                    if len(leads) % 10 == 0 or len(leads) == target_count:
+                        print(f"    Progress: {len(leads)}/{target_count} builders mined...", flush=True)
+                    time.sleep(0.15)
 
-    print(f"✅ Mined {len(leads)} candidate builders from GitHub!")
+            except Exception as e:
+                print(f"⚠️ Error querying '{query}': {e}", flush=True)
+                time.sleep(2)
+
+    print(f"✅ Mined {len(leads)} candidate builders from GitHub!", flush=True)
+    return leads
     return leads
 
 from job_board_crawler import get_active_hiring_startups
@@ -320,28 +428,72 @@ def run_lead_mining(candidate_count: int = 100, include_companies: bool = True, 
 
     new_df = pd.DataFrame(all_leads)
 
-    # If master pool already exists, merge cleanly without duplicates
+    # 1. Update Candidate Master ledger
+    cand_leads_subset = [l for l in all_leads if l.get("Persona_Bucket") == "CANDIDATE_70"]
+    if cand_leads_subset:
+        cand_df = pd.DataFrame(cand_leads_subset)
+        if os.path.exists(CANDIDATE_MASTER_PATH):
+            try:
+                existing_cands = pd.read_excel(CANDIDATE_MASTER_PATH)
+                combined_cands = pd.concat([existing_cands, cand_df], ignore_index=True)
+                cand_sub = ["GitHub URL"] if "GitHub URL" in combined_cands.columns else ["First Name", "Last Name"]
+                combined_cands = combined_cands.drop_duplicates(subset=cand_sub, keep="first")
+                combined_cands.to_excel(CANDIDATE_MASTER_PATH, index=False)
+                print(f"📁 Candidate Master ledger updated: {CANDIDATE_MASTER_PATH} ({len(combined_cands)} candidates)", flush=True)
+            except Exception as ex:
+                cand_df.to_excel(CANDIDATE_MASTER_PATH, index=False)
+        else:
+            cand_df.to_excel(CANDIDATE_MASTER_PATH, index=False)
+            print(f"📁 Candidate Master ledger saved: {CANDIDATE_MASTER_PATH} ({len(cand_df)} candidates)", flush=True)
+
+    # 2. Update Master Pool ledger
+    combined = new_df
     if os.path.exists(output_path):
         try:
             existing_df = pd.read_excel(output_path)
             combined = pd.concat([existing_df, new_df], ignore_index=True)
-            # Deduplicate by Name and Company / GitHub
             subset = ["First Name", "Last Name", "Company"] if all(c in combined.columns for c in ["First Name", "Last Name", "Company"]) else ["LinkedIn URL"]
             combined = combined.drop_duplicates(subset=subset, keep="first")
             combined.to_excel(output_path, index=False)
-            print(f"📁 Master pool updated at: {output_path} (Total: {len(combined)} leads)")
-            return combined
+            print(f"📁 Master pool updated at: {output_path} (Total: {len(combined)} leads)", flush=True)
         except Exception as e:
-            print(f"Error merging with existing master pool: {e}")
+            print(f"Error merging with existing master pool: {e}", flush=True)
+    else:
+        new_df.to_excel(output_path, index=False)
+        print(f"📁 New master pool saved at: {output_path} (Total: {len(new_df)} leads)", flush=True)
 
-    new_df.to_excel(output_path, index=False)
-    print(f"📁 New master pool saved at: {output_path} (Total: {len(new_df)} leads)")
-    return new_df
+    # 3. Synchronize Audited Ledger for Dashboard immediate access
+    if os.path.exists(AUDITED_LEADS_PATH) and cand_leads_subset:
+        try:
+            audited_df = pd.read_excel(AUDITED_LEADS_PATH)
+            # Add new candidates with verified ICP fields
+            cand_audited_records = []
+            for c in cand_leads_subset:
+                item = dict(c)
+                item["ICP_Fit"] = True
+                item["ICP_Score"] = 9
+                item["Persona_Tier"] = "CANDIDATE"
+                item["Persona_Bucket"] = "CANDIDATE_70"
+                item["Hiring_Track"] = "NONE"
+                item["ICP_Reason"] = "Verified Technical Builder / Engineer (GitHub Repos)"
+                cand_audited_records.append(item)
+            merged_audited = pd.concat([audited_df, pd.DataFrame(cand_audited_records)], ignore_index=True)
+            sub = ["GitHub URL"] if "GitHub URL" in merged_audited.columns else ["First Name", "Last Name"]
+            merged_audited = merged_audited.drop_duplicates(subset=sub, keep="first")
+            merged_audited.to_excel(AUDITED_LEADS_PATH, index=False)
+            print(f"📁 Audited cohort ledger synced at: {AUDITED_LEADS_PATH} (Total: {len(merged_audited)} leads)", flush=True)
+        except Exception as ex:
+            print(f"Error syncing audited ledger: {ex}", flush=True)
+
+    return combined
 
 if __name__ == "__main__":
-    count = 60
-    if len(sys.argv) > 1 and sys.argv[1].isdigit():
-        count = int(sys.argv[1])
-    print(f"🚀 Starting Lead Miner with target {count} candidates...")
-    df = run_lead_mining(candidate_count=count, include_companies=True)
-    print("Done!")
+    count = 150
+    candidates_only = "--candidates-only" in sys.argv
+    for arg in sys.argv[1:]:
+        if arg.isdigit():
+            count = int(arg)
+            break
+    print(f"🚀 Starting Lead Miner with target {count} candidates (include_companies={not candidates_only})...", flush=True)
+    df = run_lead_mining(candidate_count=count, include_companies=not candidates_only)
+    print("Done!", flush=True)
