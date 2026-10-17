@@ -141,26 +141,25 @@ def get_candidate_message(first_name, role, is_connect_note=False):
         f"We're currently inviting founding users before we launch publicly, and I think you'd be a great fit."
     )
 
-def get_hr_message(first_name, title, is_connect_note=False):
-    title_str = f" {title}" if title else ""
-    greeting = f"Hello{title_str} {first_name},"
-    closing = "Thank you very much."
+def get_hr_message(first_name, title="", is_connect_note=False, honorific=""):
+    title_str = f" {title.strip()}" if title and str(title).strip() and str(title).strip().lower() != 'nan' else ""
+    honorific_str = f" {honorific.strip()}" if honorific and str(honorific).strip() and str(honorific).strip().lower() != 'nan' else ""
+    greeting = f"Hello{title_str} {first_name.strip()},"
+    closing = f"Thank you very much{honorific_str}."
 
     if is_connect_note:
-        return (
+        note = (
             f"{greeting}\n"
-            f"My name is {SENDER_NAME}, {PRODUCT_INTRO}. "
-            f"We're researching how recruiters evaluate candidates beyond resumes before we ship.\n"
-            f"Your hiring perspective would be invaluable — would appreciate 15 mins to learn from you.\n"
+            f"My name is {SENDER_NAME}, building {PRODUCT_NAME}. We're researching how recruiters evaluate candidates beyond the resume before we launch.\n"
+            f"Your perspective would be genuinely helpful — I'd value 15 mins to learn from you.\n"
             f"{closing}"
         )
+        return note[:280]
+
     return (
-        f"{greeting}\n"
-        f"My name is {SENDER_NAME} and I am {PRODUCT_INTRO}. "
-        f"We are currently trying to understand how recruiters and hiring managers actually evaluate candidates "
-        f"beyond the resume before we ship the product.\n"
-        f"Your perspective as someone who hires candidates would be genuinely helpful. "
-        f"I would really appreciate 15 minutes of your time to learn from your experience.\n"
+        f"{greeting}\n\n"
+        f"My name is {SENDER_NAME} and I am building {PRODUCT_NAME}, we are currently trying to understand how recruiters and hiring managers actually evaluate candidates beyond resume before we ship the product.\n\n"
+        f"Your perspective as someone who hires candidates would be genuinely helpful, I would really appreciate 15 minutes of your time to learn from your experience.\n\n"
         f"{closing}"
     )
 
@@ -290,8 +289,8 @@ def run_outreach():
                 
                 # Build persona-specific messages
                 if persona == 'HR':
-                    dm_msg = get_hr_message(first_name, title, is_connect_note=False)
-                    note_msg = get_hr_message(first_name, title, is_connect_note=True)
+                    dm_msg = get_hr_message(first_name, title, is_connect_note=False, honorific=honorific)
+                    note_msg = get_hr_message(first_name, title, is_connect_note=True, honorific=honorific)
                 else:
                     dm_msg = get_candidate_message(first_name, clean_r, is_connect_note=False)
                     note_msg = get_candidate_message(first_name, clean_r, is_connect_note=True)

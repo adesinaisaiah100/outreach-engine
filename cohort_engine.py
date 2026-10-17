@@ -100,43 +100,75 @@ def build_founder_copy(first_name: str, company: str, rule9_proof: str = "", is_
         f"Best,\n{SENDER_NAME}"
     )
 
-def build_recruiter_copy(first_name: str, company: str = "", is_connect_note: bool = False) -> str:
-    """Recruiter Research message strictly from Section 14 (PDF Page 10)."""
+def is_recruiter_lead(lead: Dict[str, Any]) -> bool:
+    """Detects whether a lead is an HR / Recruiter persona via bucket, track, position, or category."""
+    role = str(lead.get("Position", lead.get("Role", lead.get("Title", "")))).lower()
+    bucket = str(lead.get("Persona_Bucket", "")).strip().upper()
+    track = str(lead.get("Hiring_Track", "")).strip().upper()
+    category = str(lead.get("Category", "")).lower()
+
+    if bucket == "RECRUITER_20" or track == "RECRUITER_RESEARCH":
+        return True
+    if any(k in role for k in ['hr', 'recruiter', 'recruiting', 'recruitment', 'talent', 'people', 'hiring manager', 'head of people', 'head of hr', 'people operations', 'human resources']):
+        return True
+    if any(k in category for k in ['hr', 'recruiter', 'talent']):
+        return True
+    return False
+
+def is_founder_lead(lead: Dict[str, Any]) -> bool:
+    """Detects whether a lead is a Founder / Hiring Partner persona."""
+    role = str(lead.get("Position", lead.get("Role", lead.get("Title", "")))).lower()
+    bucket = str(lead.get("Persona_Bucket", "")).strip().upper()
+    track = str(lead.get("Hiring_Track", "")).strip().upper()
+    if bucket == "FOUNDER_10" or track == "PARTNER_PILOT":
+        return True
+    if any(k in role for k in ['founder', 'co-founder', 'ceo', 'cto', 'managing director']):
+        return True
+    return False
+
+def build_recruiter_copy(first_name: str, company: str = "", is_connect_note: bool = False, title: str = "", honorific: str = "") -> str:
+    """
+    Culturally grounded, respectful HR & Recruiter message preferred by Isaiah.
+    Calibrated with authentic titles (Mr/Ms) and honorifics (sir/ma).
+    """
+    clean_name = first_name.strip() if first_name else "there"
+    title_str = f" {title.strip()}" if title and str(title).strip() and str(title).strip().lower() != 'nan' else ""
+    honorific_str = f" {honorific.strip()}" if honorific and str(honorific).strip() and str(honorific).strip().lower() != 'nan' else ""
+
+    greeting = f"Hello{title_str} {clean_name},"
+    closing = f"Thank you very much{honorific_str}."
+
     if is_connect_note:
+        # Strictly calibrated < 280 chars to prevent any LinkedIn character truncation
         note = (
-            f"Hi {first_name}, I'm {SENDER_NAME}, building {PRODUCT_NAME}. "
-            f"Researching how recruiters evaluate tech candidates beyond the CV (GitHub, code, proof). "
-            f"Not selling anything - exploring where validating skill gets difficult. "
-            f"Open to a quick 15-min chat?"
+            f"{greeting}\n"
+            f"My name is {SENDER_NAME}, building {PRODUCT_NAME}. We're researching how recruiters evaluate candidates beyond the resume before we launch.\n"
+            f"Your perspective would be genuinely helpful — I'd value 15 mins to learn from you.\n"
+            f"{closing}"
         )
         return note[:280]
 
     return (
-        f"Hi {first_name},\n\n"
-        f"I'm {SENDER_NAME}, building {PRODUCT_NAME}.\n\n"
-        f"We're researching how recruiters and hiring teams actually evaluate technical candidates "
-        f"beyond the CV — particularly when someone's experience is spread across GitHub, "
-        f"projects, portfolios, freelance work and other evidence.\n\n"
-        f"I'm not trying to sell you anything. I'd genuinely like to understand how you currently "
-        f"discover and shortlist candidates and where establishing confidence in someone's ability "
-        f"becomes difficult.\n\n"
-        f"Would you be open to a short 15-minute conversation sometime this week?\n\n"
-        f"Thank you,\n{SENDER_NAME}"
+        f"{greeting}\n\n"
+        f"My name is {SENDER_NAME} and I am building {PRODUCT_NAME}, we are currently trying to understand how recruiters and hiring managers actually evaluate candidates beyond resume before we ship the product.\n\n"
+        f"Your perspective as someone who hires candidates would be genuinely helpful, I would really appreciate 15 minutes of your time to learn from your experience.\n\n"
+        f"{closing}"
     )
 
 def get_cohort_message(lead: Dict[str, Any], is_connect_note: bool = False) -> str:
-    """Dispatches the exact cohort strategy copy based on audited persona bucket."""
+    """Dispatches the exact persona copy with strict recruiter role fallback."""
     first_name = str(lead.get("First Name", "there")).strip()
     company = str(lead.get("Company", "")).strip()
     role = str(lead.get("Position", "developer")).strip()
     rule9 = str(lead.get("Rule9_Concrete_Proof", "")).strip()
-    bucket = str(lead.get("Persona_Bucket", "CANDIDATE_70")).strip().upper()
-    track = str(lead.get("Hiring_Track", "")).strip().upper()
+    title = str(lead.get("Title", "")).strip()
+    honorific = str(lead.get("Honorific", "")).strip()
 
-    if bucket == "FOUNDER_10" or track == "PARTNER_PILOT":
+    # Prioritize recruiter detection to prevent HR leads from ever getting candidate copy
+    if is_recruiter_lead(lead):
+        return build_recruiter_copy(first_name, company, is_connect_note, title=title, honorific=honorific)
+    elif is_founder_lead(lead):
         return build_founder_copy(first_name, company, rule9, is_connect_note)
-    elif bucket == "RECRUITER_20" or track == "RECRUITER_RESEARCH":
-        return build_recruiter_copy(first_name, company, is_connect_note)
     else:
         return build_candidate_copy(first_name, rule9, role, is_connect_note)
 
